@@ -567,7 +567,7 @@ class DiscoverRunner:
 
     def teardown_databases(self, old_config, **kwargs):
         """
-        Destroys all the non-mirror databases.
+        Destroy all the non-mirror databases.
         """
         _teardown_databases(
             old_config,
@@ -593,7 +593,7 @@ class DiscoverRunner:
         A list of 'extra' tests may also be provided; these tests
         will be added to the test suite.
 
-        Returns the number of tests that failed.
+        Return the number of tests that failed.
         """
         self.setup_test_environment()
         suite = self.build_suite(test_labels, extra_tests)
@@ -623,7 +623,7 @@ def is_discoverable(label):
 
 def reorder_suite(suite, classes, reverse=False):
     """
-    Reorders a test suite by test type.
+    Reorder a test suite by test type.
 
     `classes` is a sequence of types
 
@@ -645,7 +645,7 @@ def reorder_suite(suite, classes, reverse=False):
 
 def partition_suite_by_type(suite, classes, bins, reverse=False):
     """
-    Partitions a test suite by test type. Also prevents duplicated tests.
+    Partition a test suite by test type. Also prevent duplicated tests.
 
     classes is a sequence of types
     bins is a sequence of TestSuites, one more than classes
@@ -671,7 +671,7 @@ def partition_suite_by_type(suite, classes, bins, reverse=False):
 
 def partition_suite_by_case(suite):
     """
-    Partitions a test suite by test case, preserving the order of tests.
+    Partition a test suite by test case, preserving the order of tests.
     """
     groups = []
     suite_class = type(suite)

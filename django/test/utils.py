@@ -387,7 +387,7 @@ class TestContextDecorator:
 
 class override_settings(TestContextDecorator):
     """
-    Acts as either a decorator or a context manager. If it's a decorator it
+    Act as either a decorator or a context manager. If it's a decorator it
     takes a function and returns a wrapped function. If it's a contextmanager
     it's used with the ``with`` statement. In either event entering/exiting
     are called before and after, respectively, the function/block is executed.
@@ -492,7 +492,7 @@ class modify_settings(override_settings):
 
 class override_system_checks(TestContextDecorator):
     """
-    Acts as a decorator. Overrides list of registered system checks.
+    Act as a decorator. Override list of registered system checks.
     Useful when you override `INSTALLED_APPS`, e.g. if you exclude `auth` app,
     you also need to exclude its system checks.
     """
@@ -516,7 +516,7 @@ class override_system_checks(TestContextDecorator):
 
 
 def compare_xml(want, got):
-    """Tries to do a 'xml-comparison' of want and got.  Plain string
+    """Try to do a 'xml-comparison' of want and got.  Plain string
     comparison doesn't always work because, for example, attribute
     ordering should not be important. Comment nodes are not considered in the
     comparison. Leading and trailing whitespace is ignored on both chunks.

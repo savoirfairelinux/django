@@ -155,9 +155,9 @@ class AppConfig:
 
     def get_model(self, model_name, require_ready=True):
         """
-        Returns the model with the given case-insensitive model_name.
+        Return the model with the given case-insensitive model_name.
 
-        Raises LookupError if no model exists with this name.
+        Raise LookupError if no model exists with this name.
         """
         if require_ready:
             self.apps.check_models_ready()
@@ -171,7 +171,7 @@ class AppConfig:
 
     def get_models(self, include_auto_created=False, include_swapped=False):
         """
-        Returns an iterable of models.
+        Return an iterable of models.
 
         By default, the following models aren't included:
 

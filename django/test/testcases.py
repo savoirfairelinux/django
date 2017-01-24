@@ -43,8 +43,8 @@ __all__ = ('TestCase', 'TransactionTestCase',
 
 def to_list(value):
     """
-    Puts value into a list if it's not already one.
-    Returns an empty list if value is None.
+    Put value into a list if it's not already one.
+    Return an empty list if value is None.
     """
     if value is None:
         value = []
@@ -212,7 +212,7 @@ class SimpleTestCase(unittest.TestCase):
                 return
 
     def _pre_setup(self):
-        """Performs any pre-test setup. This includes:
+        """Perform any pre-test setup. This includes:
 
         * Creating a test client.
         * Clearing the mail test outbox.
@@ -240,7 +240,7 @@ class SimpleTestCase(unittest.TestCase):
     def assertRedirects(self, response, expected_url, status_code=302,
                         target_status_code=200, msg_prefix='',
                         fetch_redirect_response=True):
-        """Asserts that a response redirected to a specific URL, and that the
+        """Assert that a response redirected to a specific URL, and that the
         redirect URL can be loaded.
 
         Note that assertRedirects won't work for external links since it uses
@@ -349,7 +349,7 @@ class SimpleTestCase(unittest.TestCase):
 
     def assertContains(self, response, text, count=None, status_code=200, msg_prefix='', html=False):
         """
-        Asserts that a response indicates that some content was retrieved
+        Assert that a response indicates that some content was retrieved
         successfully, (i.e., the HTTP status code was as expected), and that
         ``text`` occurs ``count`` times in the content of the response.
         If ``count`` is None, the count doesn't matter - the assertion is true
@@ -368,7 +368,7 @@ class SimpleTestCase(unittest.TestCase):
 
     def assertNotContains(self, response, text, status_code=200, msg_prefix='', html=False):
         """
-        Asserts that a response indicates that some content was retrieved
+        Assert that a response indicates that some content was retrieved
         successfully, (i.e., the HTTP status code was as expected), and that
         ``text`` doesn't occurs in the content of the response.
         """
@@ -379,7 +379,7 @@ class SimpleTestCase(unittest.TestCase):
 
     def assertFormError(self, response, form, field, errors, msg_prefix=''):
         """
-        Asserts that a form used to render the response has a specific field
+        Assert that a form used to render the response has a specific field
         error.
         """
         if msg_prefix:
@@ -435,7 +435,7 @@ class SimpleTestCase(unittest.TestCase):
     def assertFormsetError(self, response, formset, form_index, field, errors,
                            msg_prefix=''):
         """
-        Asserts that a formset used to render the response has a specific error.
+        Assert that a formset used to render the response has a specific error.
 
         For field errors, specify the ``form_index`` and the ``field``.
         For non-field errors, specify the ``form_index`` and the ``field`` as
@@ -538,7 +538,7 @@ class SimpleTestCase(unittest.TestCase):
 
     def assertTemplateUsed(self, response=None, template_name=None, msg_prefix='', count=None):
         """
-        Asserts that the template with the provided name was used in rendering
+        Assert that the template with the provided name was used in rendering
         the response. Also usable as context manager.
         """
         context_mgr_template, template_names, msg_prefix = self._assert_template_used(
@@ -567,7 +567,7 @@ class SimpleTestCase(unittest.TestCase):
 
     def assertTemplateNotUsed(self, response=None, template_name=None, msg_prefix=''):
         """
-        Asserts that the template with the provided name was NOT used in
+        Assert that the template with the provided name was NOT used in
         rendering the response. Also usable as context manager.
         """
         context_mgr_template, template_names, msg_prefix = self._assert_template_used(
@@ -590,7 +590,7 @@ class SimpleTestCase(unittest.TestCase):
 
     def assertRaisesMessage(self, expected_exception, expected_message, *args, **kwargs):
         """
-        Asserts that expected_message is found in the the message of a raised
+        Assert that expected_message is found in the the message of a raised
         exception.
 
         Args:
@@ -615,7 +615,7 @@ class SimpleTestCase(unittest.TestCase):
     def assertFieldOutput(self, fieldclass, valid, invalid, field_args=None,
                           field_kwargs=None, empty_value=''):
         """
-        Asserts that a form field behaves correctly with various inputs.
+        Assert that a form field behaves correctly with various inputs.
 
         Args:
             fieldclass: the class of the field to be tested.
@@ -660,7 +660,7 @@ class SimpleTestCase(unittest.TestCase):
 
     def assertHTMLEqual(self, html1, html2, msg=None):
         """
-        Asserts that two HTML snippets are semantically the same.
+        Assert that two HTML snippets are semantically the same.
         Whitespace in most cases is ignored, and attribute ordering is not
         significant. The passed-in arguments must be valid HTML.
         """
@@ -677,7 +677,7 @@ class SimpleTestCase(unittest.TestCase):
             self.fail(self._formatMessage(msg, standardMsg))
 
     def assertHTMLNotEqual(self, html1, html2, msg=None):
-        """Asserts that two HTML snippets are not semantically equivalent."""
+        """Assert that two HTML snippets are not semantically equivalent."""
         dom1 = assert_and_parse_html(self, html1, msg, 'First argument is not valid HTML:')
         dom2 = assert_and_parse_html(self, html2, msg, 'Second argument is not valid HTML:')
 
@@ -700,7 +700,7 @@ class SimpleTestCase(unittest.TestCase):
 
     def assertJSONEqual(self, raw, expected_data, msg=None):
         """
-        Asserts that the JSON fragments raw and expected_data are equal.
+        Assert that the JSON fragments raw and expected_data are equal.
         Usual JSON non-significant whitespace rules apply as the heavyweight
         is delegated to the json library.
         """
@@ -717,7 +717,7 @@ class SimpleTestCase(unittest.TestCase):
 
     def assertJSONNotEqual(self, raw, expected_data, msg=None):
         """
-        Asserts that the JSON fragments raw and expected_data are not equal.
+        Assert that the JSON fragments raw and expected_data are not equal.
         Usual JSON non-significant whitespace rules apply as the heavyweight
         is delegated to the json library.
         """
@@ -734,7 +734,7 @@ class SimpleTestCase(unittest.TestCase):
 
     def assertXMLEqual(self, xml1, xml2, msg=None):
         """
-        Asserts that two XML snippets are semantically the same.
+        Assert that two XML snippets are semantically the same.
         Whitespace in most cases is ignored, and attribute ordering is not
         significant. The passed-in arguments must be valid XML.
         """
@@ -754,7 +754,7 @@ class SimpleTestCase(unittest.TestCase):
 
     def assertXMLNotEqual(self, xml1, xml2, msg=None):
         """
-        Asserts that two XML snippets are not semantically equivalent.
+        Assert that two XML snippets are not semantically equivalent.
         Whitespace in most cases is ignored, and attribute ordering is not
         significant. The passed-in arguments must be valid XML.
         """
@@ -792,7 +792,7 @@ class TransactionTestCase(SimpleTestCase):
     allow_database_queries = True
 
     def _pre_setup(self):
-        """Performs any pre-test setup. This includes:
+        """Perform any pre-test setup. This includes:
 
         * If the class has an 'available_apps' attribute, restricting the app
           registry to these applications, then firing post_migrate -- it must
@@ -873,7 +873,7 @@ class TransactionTestCase(SimpleTestCase):
         return True
 
     def _post_teardown(self):
-        """Performs any post-test things. This includes:
+        """Perform any post-test things. This includes:
 
         * Flushing the contents of the database, to leave a clean slate. If
           the class has an 'available_apps' attribute, post_migrate isn't fired.
@@ -943,7 +943,7 @@ class TransactionTestCase(SimpleTestCase):
 
 def connections_support_transactions():
     """
-    Returns True if all connections support transactions.
+    Return True if all connections support transactions.
     """
     return all(conn.features.supports_transactions
                for conn in connections.all())
@@ -1145,7 +1145,7 @@ class FSFilesHandler(WSGIHandler):
 
     def _should_handle(self, path):
         """
-        Checks if the path should be handled. Ignores the path if:
+        Check if the path should be handled. Ignores the path if:
 
         * the host is provided as part of the base_url
         * the request's path isn't under the media path (or equal)
@@ -1154,7 +1154,7 @@ class FSFilesHandler(WSGIHandler):
 
     def file_path(self, url):
         """
-        Returns the relative path to the file on disk for the given URL.
+        Return the relative path to the file on disk for the given URL.
         """
         relative_url = url[len(self.base_url[2]):]
         return url2pathname(relative_url)
@@ -1226,7 +1226,7 @@ class LiveServerThread(threading.Thread):
 
     def run(self):
         """
-        Sets up the live server and databases, and then loops over handling
+        Set up the live server and databases, and then loops over handling
         http requests.
         """
         if self.connections_override:
@@ -1261,8 +1261,8 @@ class LiveServerThread(threading.Thread):
 
 class LiveServerTestCase(TransactionTestCase):
     """
-    Does basically the same as TransactionTestCase but also launches a live
-    http server in a separate thread so that the tests may use another testing
+    Do basically the same as TransactionTestCase but also launch a live http
+    server in a separate thread so that the tests may use another testing
     framework, such as Selenium for example, instead of the built-in dummy
     client.
     Note that it inherits from TransactionTestCase instead of TestCase because

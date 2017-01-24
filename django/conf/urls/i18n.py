@@ -8,7 +8,7 @@ from django.views.i18n import set_language
 
 def i18n_patterns(*urls, **kwargs):
     """
-    Adds the language code prefix to every URL pattern within this
+    Add the language code prefix to every URL pattern within this
     function. This may only be used in the root URLconf, not in an included
     URLconf.
     """
