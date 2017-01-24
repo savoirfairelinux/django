@@ -93,7 +93,7 @@ class View:
 
     def options(self, request, *args, **kwargs):
         """
-        Handles responding to requests for the OPTIONS HTTP verb.
+        Handle responding to requests for the OPTIONS HTTP verb.
         """
         response = http.HttpResponse()
         response['Allow'] = ', '.join(self._allowed_methods())
@@ -115,7 +115,7 @@ class TemplateResponseMixin:
 
     def render_to_response(self, context, **response_kwargs):
         """
-        Returns a response, using the `response_class` for this
+        Return a response, using the `response_class` for this
         view, with a template rendered with the given context.
 
         If any keyword arguments are provided, they will be
@@ -132,7 +132,7 @@ class TemplateResponseMixin:
 
     def get_template_names(self):
         """
-        Returns a list of template names to be used for the request. Must return
+        Return a list of template names to be used for the request. Must return
         a list. May not be called if render_to_response is overridden.
         """
         if self.template_name is None:
@@ -145,7 +145,7 @@ class TemplateResponseMixin:
 
 class TemplateView(TemplateResponseMixin, ContextMixin, View):
     """
-    A view that renders a template.  This view will also pass into the context
+    Render a template.  This view will also pass into the context
     any keyword arguments passed by the URLconf.
     """
     def get(self, request, *args, **kwargs):
@@ -155,7 +155,7 @@ class TemplateView(TemplateResponseMixin, ContextMixin, View):
 
 class RedirectView(View):
     """
-    A view that provides a redirect on any GET request.
+    Provide a redirect on any GET request.
     """
     permanent = False
     url = None

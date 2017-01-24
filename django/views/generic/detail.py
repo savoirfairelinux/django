@@ -7,7 +7,7 @@ from django.views.generic.base import ContextMixin, TemplateResponseMixin, View
 
 class SingleObjectMixin(ContextMixin):
     """
-    Provides the ability to retrieve a single object for further manipulation.
+    Provide the ability to retrieve a single object for further manipulation.
     """
     model = None
     queryset = None
@@ -19,7 +19,7 @@ class SingleObjectMixin(ContextMixin):
 
     def get_object(self, queryset=None):
         """
-        Returns the object the view is displaying.
+        Return the object the view is displaying.
 
         By default this requires `self.queryset` and a `pk` or `slug` argument
         in the URLconf, but subclasses can override this to return any object.

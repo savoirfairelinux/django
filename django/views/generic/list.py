@@ -97,14 +97,14 @@ class MultipleObjectMixin(ContextMixin):
 
     def get_paginate_orphans(self):
         """
-        Returns the maximum number of orphans extend the last page by when
+        Return the maximum number of orphans extend the last page by when
         paginating.
         """
         return self.paginate_orphans
 
     def get_allow_empty(self):
         """
-        Returns ``True`` if the view should display empty lists, and ``False``
+        Return ``True`` if the view should display empty lists, and ``False``
         if a 404 should be raised instead.
         """
         return self.allow_empty

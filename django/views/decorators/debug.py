@@ -5,7 +5,7 @@ from django.http import HttpRequest
 
 def sensitive_variables(*variables):
     """
-    Indicates which variables used in the decorated function are sensitive, so
+    Indicate which variables used in the decorated function are sensitive, so
     that those variables can later be treated in a special way, for example
     by hiding them when logging unhandled exceptions.
 
@@ -40,7 +40,7 @@ def sensitive_variables(*variables):
 
 def sensitive_post_parameters(*parameters):
     """
-    Indicates which POST parameters used in the decorated view are sensitive,
+    Indicate which POST parameters used in the decorated view are sensitive,
     so that those parameters can later be treated in a special way, for example
     by hiding them when logging unhandled exceptions.
 

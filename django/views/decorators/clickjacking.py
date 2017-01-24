@@ -3,7 +3,7 @@ from functools import wraps
 
 def xframe_options_deny(view_func):
     """
-    Modifies a view function so its response has the X-Frame-Options HTTP
+    Modify a view function so its response has the X-Frame-Options HTTP
     header set to 'DENY' as long as the response doesn't already have that
     header set.
 
@@ -23,7 +23,7 @@ def xframe_options_deny(view_func):
 
 def xframe_options_sameorigin(view_func):
     """
-    Modifies a view function so its response has the X-Frame-Options HTTP
+    Modify a view function so its response has the X-Frame-Options HTTP
     header set to 'SAMEORIGIN' as long as the response doesn't already have
     that header set.
 
@@ -43,7 +43,7 @@ def xframe_options_sameorigin(view_func):
 
 def xframe_options_exempt(view_func):
     """
-    Modifies a view function by setting a response variable that instructs
+    Modify a view function by setting a response variable that instructs
     XFrameOptionsMiddleware to NOT set the X-Frame-Options HTTP header.
 
     e.g.

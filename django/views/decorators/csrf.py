@@ -49,7 +49,7 @@ uses the csrf_token template tag, or the CsrfViewMiddleware is used.
 
 def csrf_exempt(view_func):
     """
-    Marks a view function as being exempt from the CSRF view protection.
+    Mark a view function as being exempt from the CSRF view protection.
     """
     # We could just do view_func.csrf_exempt = True, but decorators
     # are nicer if they don't have side-effects, so we return a new

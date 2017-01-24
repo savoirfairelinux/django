@@ -62,7 +62,7 @@ def cleanse_setting(key, value):
 
 
 def get_safe_settings():
-    "Returns a dictionary of the settings module, with sensitive settings blurred out."
+    "Return a dictionary of the settings module, with sensitive settings blurred out."
     settings_dict = {}
     for k in dir(settings):
         if k.isupper():
@@ -128,7 +128,7 @@ class SafeExceptionReporterFilter(ExceptionReporterFilter):
 
     def get_cleansed_multivaluedict(self, request, multivaluedict):
         """
-        Replaces the keys in a MultiValueDict marked as sensitive with stars.
+        Replace the keys in a MultiValueDict marked as sensitive with stars.
         This mitigates leaking sensitive POST parameters if something like
         request.POST['nonexistent_key'] throws an exception (#21098).
         """
@@ -142,7 +142,7 @@ class SafeExceptionReporterFilter(ExceptionReporterFilter):
 
     def get_post_parameters(self, request):
         """
-        Replaces the values of POST parameters marked as sensitive with
+        Replace the values of POST parameters marked as sensitive with
         stars (*********).
         """
         if request is None:
@@ -181,7 +181,7 @@ class SafeExceptionReporterFilter(ExceptionReporterFilter):
 
     def get_traceback_frame_variables(self, request, tb_frame):
         """
-        Replaces the values of variables marked as sensitive with
+        Replace the values of variables marked as sensitive with
         stars (*********).
         """
         # Loop through the frame's callers to see if the sensitive_variables
@@ -339,8 +339,8 @@ class ExceptionReporter:
 
     def _get_lines_from_file(self, filename, lineno, context_lines, loader=None, module_name=None):
         """
-        Returns context_lines before and after lineno from file.
-        Returns (pre_context_lineno, pre_context, context_line, post_context).
+        Return context_lines before and after lineno from file.
+        Return (pre_context_lineno, pre_context, context_line, post_context).
         """
         source = None
         if loader is not None and hasattr(loader, "get_source"):

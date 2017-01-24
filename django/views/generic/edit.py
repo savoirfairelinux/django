@@ -10,7 +10,7 @@ from django.views.generic.detail import (
 
 class FormMixin(ContextMixin):
     """
-    A mixin that provides a way to show and handle a form in a request.
+    Provide a way to show and handle a form in a request.
     """
 
     initial = {}
@@ -20,25 +20,25 @@ class FormMixin(ContextMixin):
 
     def get_initial(self):
         """
-        Returns the initial data to use for forms on this view.
+        Return the initial data to use for forms on this view.
         """
         return self.initial.copy()
 
     def get_prefix(self):
         """
-        Returns the prefix to use for forms on this view
+        Return the prefix to use for forms on this view
         """
         return self.prefix
 
     def get_form_class(self):
         """
-        Returns the form class to use in this view
+        Return the form class to use in this view
         """
         return self.form_class
 
     def get_form(self, form_class=None):
         """
-        Returns an instance of the form to be used in this view.
+        Return an instance of the form to be used in this view.
         """
         if form_class is None:
             form_class = self.get_form_class()
@@ -46,7 +46,7 @@ class FormMixin(ContextMixin):
 
     def get_form_kwargs(self):
         """
-        Returns the keyword arguments for instantiating the form.
+        Return the keyword arguments for instantiating the form.
         """
         kwargs = {
             'initial': self.get_initial(),
@@ -62,7 +62,7 @@ class FormMixin(ContextMixin):
 
     def get_success_url(self):
         """
-        Returns the supplied success URL.
+        Return the supplied success URL.
         """
         if self.success_url:
             # Forcing possible reverse_lazy evaluation
@@ -96,13 +96,13 @@ class FormMixin(ContextMixin):
 
 class ModelFormMixin(FormMixin, SingleObjectMixin):
     """
-    A mixin that provides a way to show and handle a modelform in a request.
+    Provide a way to show and handle a modelform in a request.
     """
     fields = None
 
     def get_form_class(self):
         """
-        Returns the form class to use in this view.
+        Return the form class to use in this view.
         """
         if self.fields is not None and self.form_class:
             raise ImproperlyConfigured(
@@ -133,7 +133,7 @@ class ModelFormMixin(FormMixin, SingleObjectMixin):
 
     def get_form_kwargs(self):
         """
-        Returns the keyword arguments for instantiating the form.
+        Return the keyword arguments for instantiating the form.
         """
         kwargs = super().get_form_kwargs()
         if hasattr(self, 'object'):
@@ -142,7 +142,7 @@ class ModelFormMixin(FormMixin, SingleObjectMixin):
 
     def get_success_url(self):
         """
-        Returns the supplied URL.
+        Return the supplied URL.
         """
         if self.success_url:
             url = self.success_url.format(**self.object.__dict__)
@@ -164,18 +164,16 @@ class ModelFormMixin(FormMixin, SingleObjectMixin):
 
 
 class ProcessFormView(View):
-    """
-    A mixin that renders a form on GET and processes it on POST.
-    """
+    """Render a form on GET and processes it on POST."""
     def get(self, request, *args, **kwargs):
         """
-        Handles GET requests and instantiates a blank version of the form.
+        Handle GET requests and instantiates a blank version of the form.
         """
         return self.render_to_response(self.get_context_data())
 
     def post(self, request, *args, **kwargs):
         """
-        Handles POST requests, instantiating a form instance with the passed
+        Handle POST requests, instantiating a form instance with the passed
         POST variables and then checked for validity.
         """
         form = self.get_form()
@@ -256,7 +254,7 @@ class DeletionMixin:
 
     def delete(self, request, *args, **kwargs):
         """
-        Calls the delete() method on the fetched object and then
+        Call the delete() method on the fetched object and then
         redirects to the success URL.
         """
         self.object = self.get_object()
