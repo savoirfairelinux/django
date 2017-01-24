@@ -8,7 +8,7 @@ here.
 
 class TemplateDoesNotExist(Exception):
     """
-    The exception used when a template does not exist. Accepts the following
+    The exception used when a template does not exist. Accept the following
     optional arguments:
 
     backend

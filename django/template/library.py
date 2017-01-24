@@ -164,7 +164,7 @@ class Library:
 class TagHelperNode(Node):
     """
     Base class for tag helper nodes such as SimpleNode and InclusionNode.
-    Manages the positional and keyword arguments to be passed to the decorated
+    Manage the positional and keyword arguments to be passed to the decorated
     function.
     """
     def __init__(self, func, takes_context, args, kwargs):

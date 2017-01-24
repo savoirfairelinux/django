@@ -108,7 +108,7 @@ class BaseContext:
 
     def new(self, values=None):
         """
-        Returns a new context with the same properties, but with only the
+        Return a new context with the same properties, but with only the
         values given in 'values' stored.
         """
         new_context = copy(self)
@@ -117,7 +117,7 @@ class BaseContext:
 
     def flatten(self):
         """
-        Returns self.dicts as one dictionary
+        Return self.dicts as one dictionary.
         """
         flat = {}
         for d in self.dicts:
@@ -126,7 +126,7 @@ class BaseContext:
 
     def __eq__(self, other):
         """
-        Compares two contexts by comparing theirs 'dicts' attributes.
+        Compare two contexts by comparing theirs 'dicts' attributes.
         """
         if isinstance(other, BaseContext):
             # because dictionaries can be put in different order
@@ -166,7 +166,7 @@ class Context(BaseContext):
         return duplicate
 
     def update(self, other_dict):
-        "Pushes other_dict to the stack of dictionaries in the Context"
+        "Push other_dict to the stack of dictionaries in the Context"
         if not hasattr(other_dict, '__getitem__'):
             raise TypeError('other_dict must be a mapping (dictionary-like) object.')
         if isinstance(other_dict, BaseContext):
@@ -178,8 +178,8 @@ class RenderContext(BaseContext):
     """
     A stack container for storing Template state.
 
-    RenderContext simplifies the implementation of template Nodes by providing a
-    safe place to store state between invocations of a node's `render` method.
+    Simplify the implementation of template Nodes by providing a safe place to
+    store state between invocations of a node's `render` method.
 
     The RenderContext also provides scoping rules that are more sensible for
     'template local' variables. The render context stack is pushed before each
@@ -218,8 +218,8 @@ class RenderContext(BaseContext):
 
 class RequestContext(Context):
     """
-    This subclass of template.Context automatically populates itself using
-    the processors defined in the engine's configuration.
+    Automatically populate itself using the processors defined in the engine's
+    configuration.
     Additional processors can be specified as a list of callables
     using the "processors" keyword argument.
     """

@@ -628,7 +628,7 @@ filter_re = re.compile(filter_raw_string, re.VERBOSE)
 
 class FilterExpression:
     """
-    Parses a variable token and its optional filters (all as a single string),
+    Parse a variable token and its optional filters (all as a single string),
     and return a list of tuples of the filter name and arguments.
     Sample::
 
@@ -835,7 +835,7 @@ class Variable:
 
     def _resolve_lookup(self, context):
         """
-        Performs resolution of a real variable (i.e. not a literal) against the
+        Perform resolution of a real variable (i.e. not a literal) against the
         given context.
 
         As indicated by the method's name, this method is an implementation
@@ -981,7 +981,7 @@ class TextNode(Node):
 
 def render_value_in_context(value, context):
     """
-    Converts any value to a string to become part of a rendered template. This
+    Convert any value to a string to become part of a rendered template. This
     means escaping, if required, and conversion to a string. If value is a
     string, it's expected to already be translated.
     """
