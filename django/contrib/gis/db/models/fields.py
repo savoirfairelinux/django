@@ -20,7 +20,7 @@ _srid_cache = defaultdict(dict)
 
 def get_srid_info(srid, connection):
     """
-    Returns the units, unit name, and spheroid WKT associated with the
+    Return the units, unit name, and spheroid WKT associated with the
     given SRID from the `spatial_ref_sys` (or equivalent) spatial database
     table for the given database connection.  These results are cached.
     """
@@ -51,7 +51,7 @@ def get_srid_info(srid, connection):
 class GeoSelectFormatMixin:
     def select_format(self, compiler, sql, params):
         """
-        Returns the selection format string, depending on the requirements
+        Return the selection format string, depending on the requirements
         of the spatial backend.  For example, Oracle and MySQL require custom
         selection formats in order to retrieve geometries in OGC WKT. For all
         other fields a simple '%s' format string is returned.
@@ -75,7 +75,7 @@ class BaseSpatialField(Field):
     """
     The Base GIS Field.
 
-    It's used as a base class for GeometryField and RasterField. Defines
+    It's used as a base class for GeometryField and RasterField. Define
     properties that are common to all GIS fields such as the characteristics
     of the spatial reference system of the field.
     """
@@ -155,7 +155,7 @@ class BaseSpatialField(Field):
 
     def get_placeholder(self, value, compiler, connection):
         """
-        Returns the placeholder for the spatial column for the
+        Return the placeholder for the spatial column for the
         given value.
         """
         return connection.ops.get_geom_placeholder(self, value, compiler)
@@ -203,9 +203,8 @@ class BaseSpatialField(Field):
         """
         Spatial lookup values are either a parameter that is (or may be
         converted to) a geometry or raster, or a sequence of lookup values
-        that begins with a geometry or raster. This routine sets up the
-        geometry or raster value properly and preserves any other lookup
-        parameters.
+        that begins with a geometry or raster. Set up the geometry or raster
+        value properly and preserves any other lookup parameters.
         """
         value = super().get_prep_value(value)
 
@@ -256,7 +255,7 @@ for klass in gis_lookups.values():
 
 class GeometryField(GeoSelectFormatMixin, BaseSpatialField):
     """
-    The base Geometry field -- maps to the OpenGIS Specification Geometry type.
+    The base Geometry field -- map to the OpenGIS Specification Geometry type.
     """
     description = _("The base Geometry field -- maps to the OpenGIS Specification Geometry type.")
     form_class = forms.GeometryField
@@ -266,7 +265,7 @@ class GeometryField(GeoSelectFormatMixin, BaseSpatialField):
     def __init__(self, verbose_name=None, dim=2, geography=False, **kwargs):
         """
         The initialization function for geometry fields. In addition to the
-        parameters from BaseSpatialField, it takes the following as keyword
+        parameters from BaseSpatialField, take the following as keyword
         arguments:
 
         dim:
@@ -306,7 +305,7 @@ class GeometryField(GeoSelectFormatMixin, BaseSpatialField):
     # ### Routines specific to GeometryField ###
     def get_distance(self, value, lookup_type, connection):
         """
-        Returns a distance number in units of the field.  For example, if
+        Return a distance number in units of the field.  For example, if
         `D(km=1)` was passed in and the units of the field were in meters,
         then 1000 would be returned.
         """
@@ -400,7 +399,7 @@ class ExtentField(GeoSelectFormatMixin, Field):
 
 class RasterField(BaseSpatialField):
     """
-    Raster field for GeoDjango -- evaluates into GDALRaster objects.
+    Raster field for GeoDjango -- evaluate into GDALRaster objects.
     """
 
     description = _("Raster Field")

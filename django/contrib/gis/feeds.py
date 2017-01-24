@@ -4,7 +4,7 @@ from django.utils.feedgenerator import Atom1Feed, Rss201rev2Feed
 
 class GeoFeedMixin:
     """
-    This mixin provides the necessary routines for SyndicationFeed subclasses
+    Provide the necessary routines for SyndicationFeed subclasses
     to produce simple GeoRSS or W3C Geo elements.
     """
 
@@ -30,9 +30,7 @@ class GeoFeedMixin:
             handler.addQuickElement('georss:point', self.georss_coords((coords,)))
 
     def add_georss_element(self, handler, item, w3c_geo=False):
-        """
-        This routine adds a GeoRSS XML element using the given item and handler.
-        """
+        """Add a GeoRSS XML element using the given item and handler."""
         # Getting the Geometry object.
         geom = item.get('geometry')
         if geom is not None:

@@ -32,7 +32,7 @@ class GeometryField(forms.Field):
 
     def to_python(self, value):
         """
-        Transforms the value to a Geometry object.
+        Transform the value to a Geometry object.
         """
         if value in self.empty_values:
             return None
@@ -54,7 +54,7 @@ class GeometryField(forms.Field):
 
     def clean(self, value):
         """
-        Validates that the input value can be converted to a Geometry
+        Validate that the input value can be converted to a Geometry
         object (which is returned).  A ValidationError is raised if
         the value cannot be instantiated as a Geometry.
         """

@@ -202,7 +202,7 @@ class MeasureBase:
     @classmethod
     def unit_attname(cls, unit_str):
         """
-        Retrieves the unit attribute name for the given unit string.
+        Retrieve the unit attribute name for the given unit string.
         For example, if the given unit string is 'metre', 'm' would be returned.
         An exception is raised if an attribute cannot be found.
         """

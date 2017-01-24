@@ -12,7 +12,7 @@ from django.utils.functional import cached_property
 
 class SessionStore(SessionBase):
     """
-    Implements database session store.
+    Implement database session store.
     """
     def __init__(self, session_key=None):
         super().__init__(session_key)
@@ -72,7 +72,7 @@ class SessionStore(SessionBase):
 
     def save(self, must_create=False):
         """
-        Saves the current session data to the database. If 'must_create' is
+        Save the current session data to the database. If 'must_create' is
         True, a database error will be raised if the saving operation doesn't
         create a *new* entry (as opposed to possibly updating an existing
         entry).

@@ -12,7 +12,7 @@ from django.contrib.gis.db.backends.base.models import SpatialRefSysMixin
 
 
 class OracleGeometryColumns(models.Model):
-    "Maps to the Oracle USER_SDO_GEOM_METADATA table."
+    "Map to the Oracle USER_SDO_GEOM_METADATA table."
     table_name = models.CharField(max_length=32)
     column_name = models.CharField(max_length=1024)
     srid = models.IntegerField(primary_key=True)
@@ -26,7 +26,7 @@ class OracleGeometryColumns(models.Model):
     @classmethod
     def table_name_col(cls):
         """
-        Returns the name of the metadata column used to store the feature table
+        Return the name of the metadata column used to store the feature table
         name.
         """
         return 'table_name'
@@ -34,7 +34,7 @@ class OracleGeometryColumns(models.Model):
     @classmethod
     def geom_col_name(cls):
         """
-        Returns the name of the metadata column used to store the feature
+        Return the name of the metadata column used to store the feature
         geometry column.
         """
         return 'column_name'
@@ -44,7 +44,7 @@ class OracleGeometryColumns(models.Model):
 
 
 class OracleSpatialRefSys(models.Model, SpatialRefSysMixin):
-    "Maps to the Oracle MDSYS.CS_SRS table."
+    "Map to the Oracle MDSYS.CS_SRS table."
     cs_name = models.CharField(max_length=68)
     srid = models.IntegerField(primary_key=True)
     auth_srid = models.IntegerField()

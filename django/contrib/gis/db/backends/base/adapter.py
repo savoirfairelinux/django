@@ -1,6 +1,6 @@
 class WKTAdapter:
     """
-    This provides an adaptor for Geometries sent to the
+    Provide an adaptor for Geometries sent to the
     MySQL and Oracle database backends.
     """
     def __init__(self, geom):

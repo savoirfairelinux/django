@@ -131,7 +131,7 @@ CONTEXT_PTR = POINTER(GEOSContextHandle_t)
 # Used specifically by the GEOSGeom_createPolygon and GEOSGeom_createCollection
 #  GEOS routines
 def get_pointer_arr(n):
-    "Gets a ctypes pointer array (of length `n`) for GEOSGeom_t opaque pointer."
+    "Get a ctypes pointer array (of length `n`) for GEOSGeom_t opaque pointer."
     GeomArr = GEOM_PTR * n
     return GeomArr()
 
@@ -185,7 +185,7 @@ version_regex = re.compile(
 
 def geos_version_info():
     """
-    Returns a dictionary containing the various version metadata parsed from
+    Return a dictionary containing the various version metadata parsed from
     the GEOS version string, including the version number, whether the version
     is a release candidate (and what number release candidate), and the C API
     version.

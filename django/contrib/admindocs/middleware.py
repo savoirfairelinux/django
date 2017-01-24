@@ -5,7 +5,7 @@ from django.utils.deprecation import MiddlewareMixin
 
 class XViewMiddleware(MiddlewareMixin):
     """
-    Adds an X-View header to internal HEAD requests -- used by the documentation system.
+    Add an X-View header to internal HEAD requests -- used by the documentation system.
     """
     def process_view(self, request, view_func, view_args, view_kwargs):
         """

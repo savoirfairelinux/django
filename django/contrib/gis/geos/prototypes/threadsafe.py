@@ -30,8 +30,8 @@ thread_context = GEOSContext()
 
 class GEOSFunc:
     """
-    Class that serves as a wrapper for GEOS C Functions, and will
-    use thread-safe function variants when available.
+    Serve as a wrapper for GEOS C Functions, and will use thread-safe function
+    variants when available.
     """
     def __init__(self, func_name):
         try:

@@ -75,7 +75,7 @@ class FileSystemFinder(BaseFinder):
 
     def find(self, path, all=False):
         """
-        Looks for files in the extra locations
+        Look for files in the extra locations
         as defined in ``STATICFILES_DIRS``.
         """
         matches = []
@@ -91,7 +91,7 @@ class FileSystemFinder(BaseFinder):
 
     def find_location(self, root, path, prefix=None):
         """
-        Finds a requested static file in a location, returning the found
+        Find a requested static file in a location, returning the found
         absolute path (or ``None`` if no match).
         """
         if prefix:
@@ -150,7 +150,7 @@ class AppDirectoriesFinder(BaseFinder):
 
     def find(self, path, all=False):
         """
-        Looks for files in the app directories.
+        Look for files in the app directories.
         """
         matches = []
         for app in self.apps:
@@ -198,7 +198,7 @@ class BaseStorageFinder(BaseFinder):
 
     def find(self, path, all=False):
         """
-        Looks for files in the default file storage, if it's local.
+        Look for files in the default file storage, if it's local.
         """
         try:
             self.storage.path('')
@@ -267,7 +267,7 @@ def get_finders():
 @functools.lru_cache(maxsize=None)
 def get_finder(import_path):
     """
-    Imports the staticfiles finder class described by import_path, where
+    Import the staticfiles finder class described by import_path, where
     import_path is the full Python path to the class.
     """
     Finder = import_string(import_path)

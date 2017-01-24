@@ -33,7 +33,7 @@ def is_password_usable(encoded):
 
 def check_password(password, encoded, setter=None, preferred='default'):
     """
-    Returns a boolean of whether the raw password matches the three
+    Return a boolean of whether the raw password matches the three
     part encoded digest.
 
     If setter is specified, it'll be called when you need to
@@ -109,7 +109,7 @@ def reset_hashers(**kwargs):
 
 def get_hasher(algorithm='default'):
     """
-    Returns an instance of a loaded password hasher.
+    Return an instance of a loaded password hasher.
 
     If algorithm is 'default', the default hasher will be returned.
     This function will also lazy import hashers specified in your
@@ -133,10 +133,10 @@ def get_hasher(algorithm='default'):
 
 def identify_hasher(encoded):
     """
-    Returns an instance of a loaded password hasher.
+    Return an instance of a loaded password hasher.
 
-    Identifies hasher algorithm by examining encoded hash, and calls
-    get_hasher() to return hasher. Raises ValueError if
+    Identify hasher algorithm by examining encoded hash, and call
+    get_hasher() to return hasher. Raise ValueError if
     algorithm cannot be identified, or if hasher is not loaded.
     """
     # Ancient versions of Django created plain MD5 passwords and accepted
@@ -154,7 +154,7 @@ def identify_hasher(encoded):
 
 def mask_hash(hash, show=6, char="*"):
     """
-    Returns the given hash, with only the first ``show`` number shown. The
+    Return the given hash, with only the first ``show`` number shown. The
     rest are masked with ``char`` for security reasons.
     """
     masked = hash[:show]
@@ -191,19 +191,19 @@ class BasePasswordHasher:
 
     def salt(self):
         """
-        Generates a cryptographically secure nonce salt in ASCII
+        Generate a cryptographically secure nonce salt in ASCII
         """
         return get_random_string()
 
     def verify(self, password, encoded):
         """
-        Checks if the given password is correct
+        Check if the given password is correct
         """
         raise NotImplementedError('subclasses of BasePasswordHasher must provide a verify() method')
 
     def encode(self, password, salt):
         """
-        Creates an encoded database value
+        Create an encoded database value
 
         The result is normally formatted as "algorithm$salt$hash" and
         must be fewer than 128 characters.
@@ -212,7 +212,7 @@ class BasePasswordHasher:
 
     def safe_summary(self, encoded):
         """
-        Returns a summary of safe values
+        Return a summary of safe values
 
         The result is a dictionary and will be used where the password field
         must be displayed to construct a safe representation of the password.
@@ -542,7 +542,7 @@ class MD5PasswordHasher(BasePasswordHasher):
 
 class UnsaltedSHA1PasswordHasher(BasePasswordHasher):
     """
-    Very insecure algorithm that you should *never* use; stores SHA1 hashes
+    Very insecure algorithm that you should *never* use; store SHA1 hashes
     with an empty salt.
 
     This class is implemented because Django used to accept such password

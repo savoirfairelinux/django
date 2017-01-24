@@ -20,7 +20,7 @@ class GenericForeignKey:
     Provide a generic many-to-one relation through the ``content_type`` and
     ``object_id`` fields.
 
-    This class also doubles as an accessor to the related object (similar to
+    Also double as an accessor to the related object (similar to
     ForwardManyToOneDescriptor) by adding itself as a model attribute.
     """
 

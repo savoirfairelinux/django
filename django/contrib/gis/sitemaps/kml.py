@@ -18,7 +18,7 @@ class KMLSitemap(Sitemap):
 
     def _build_kml_sources(self, sources):
         """
-        Goes through the given sources and returns a 3-tuple of
+        Go through the given sources and returns a 3-tuple of
         the application label, module name, and field name of every
         GeometryField encountered in the sources.
 

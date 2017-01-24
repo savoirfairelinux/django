@@ -1,6 +1,6 @@
 def register(*models, **kwargs):
     """
-    Registers the given model(s) classes and wrapped ModelAdmin class with
+    Register the given model(s) classes and wrapped ModelAdmin class with
     admin site:
 
     @register(Author)

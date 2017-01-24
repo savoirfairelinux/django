@@ -150,7 +150,7 @@ class LayerMapping:
 
     # #### Checking routines used during initialization ####
     def check_fid_range(self, fid_range):
-        "This checks the `fid_range` keyword."
+        "Check the `fid_range` keyword."
         if fid_range:
             if isinstance(fid_range, (tuple, list)):
                 return slice(*fid_range)
@@ -163,7 +163,7 @@ class LayerMapping:
 
     def check_layer(self):
         """
-        This checks the Layer metadata, and ensures that it is compatible
+        Check the Layer metadata, and ensures that it is compatible
         with the mapping information and model.  Unlike previous revisions,
         there is no need to increment through each feature in the Layer.
         """
@@ -259,7 +259,7 @@ class LayerMapping:
             self.fields[field_name] = fields_val
 
     def check_srs(self, source_srs):
-        "Checks the compatibility of the given spatial reference object."
+        "Check the compatibility of the given spatial reference object."
 
         if isinstance(source_srs, SpatialReference):
             sr = source_srs
@@ -277,7 +277,7 @@ class LayerMapping:
             return sr
 
     def check_unique(self, unique):
-        "Checks the `unique` keyword parameter -- may be a sequence or string."
+        "Check the `unique` keyword parameter -- may be a sequence or string."
         if isinstance(unique, (list, tuple)):
             # List of fields to determine uniqueness with
             for attr in unique:
@@ -338,7 +338,7 @@ class LayerMapping:
     # #### Verification routines used in constructing model keyword arguments. ####
     def verify_ogr_field(self, ogr_field, model_field):
         """
-        Verifies if the OGR Field contents are acceptable to the Django
+        Verify if the OGR Field contents are acceptable to the Django
         model field.  If they are, the verified value is returned,
         otherwise the proper exception is raised.
         """
@@ -420,7 +420,7 @@ class LayerMapping:
 
     def verify_geom(self, geom, model_field):
         """
-        Verifies the geometry -- will construct and return a GeometryCollection
+        Verify the geometry -- will construct and return a GeometryCollection
         if necessary (for example if the model field is MultiPolygonField while
         the mapped shapefile only contains Polygons).
         """
@@ -447,7 +447,7 @@ class LayerMapping:
 
     # #### Other model methods ####
     def coord_transform(self):
-        "Returns the coordinate transformation object."
+        "Return the coordinate transformation object."
         SpatialRefSys = self.spatial_backend.spatial_ref_sys()
         try:
             # Getting the target spatial reference system
@@ -461,7 +461,7 @@ class LayerMapping:
             ) from exc
 
     def geometry_field(self):
-        "Returns the GeometryField instance associated with the geographic column."
+        "Return the GeometryField instance associated with the geographic column."
         # Use `get_field()` on the model's options so that we
         # get the correct field instance if there's model inheritance.
         opts = self.model._meta
@@ -478,7 +478,7 @@ class LayerMapping:
     def save(self, verbose=False, fid_range=False, step=False,
              progress=False, silent=False, stream=sys.stdout, strict=False):
         """
-        Saves the contents from the OGR DataSource Layer into the database
+        Save the contents from the OGR DataSource Layer into the database
         according to the mapping dictionary given at initialization.
 
         Keyword Parameters:

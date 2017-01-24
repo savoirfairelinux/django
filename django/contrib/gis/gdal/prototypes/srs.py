@@ -10,7 +10,7 @@ from django.contrib.gis.gdal.prototypes.generation import (
 # Shortcut generation for routines with known parameters.
 def srs_double(f):
     """
-    Creates a function prototype for the OSR routines that take
+    Create a function prototype for the OSR routines that take
     the OSRSpatialReference object and
     """
     return double_output(f, [c_void_p, POINTER(c_int)], errcheck=True)
@@ -18,7 +18,7 @@ def srs_double(f):
 
 def units_func(f):
     """
-    Creates a ctypes function prototype for OSR units functions, e.g.,
+    Create a ctypes function prototype for OSR units functions, e.g.,
     OSRGetAngularUnits, OSRGetLinearUnits.
     """
     return double_output(f, [c_void_p, POINTER(c_char_p)], strarg=True)

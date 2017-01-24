@@ -45,9 +45,9 @@ class FlatpageNode(template.Node):
 @register.tag
 def get_flatpages(parser, token):
     """
-    Retrieves all flatpage objects available for the current site and
+    Retrieve all flatpage objects available for the current site and
     visible to the specific user (or visible to all users if no user is
-    specified). Populates the template context with them in a variable
+    specified). Populate the template context with them in a variable
     whose name is defined by the ``as`` clause.
 
     An optional ``for`` clause can be used to control the user whose

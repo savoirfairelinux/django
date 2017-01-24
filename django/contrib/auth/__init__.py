@@ -42,7 +42,7 @@ def get_backends():
 
 def _clean_credentials(credentials):
     """
-    Cleans a dictionary of credentials of potentially sensitive info before
+    Clean a dictionary of credentials of potentially sensitive info before
     sending to less secure functions.
 
     Not comprehensive - intended for user_login_failed signal
@@ -144,7 +144,7 @@ def login(request, user, backend=None):
 
 def logout(request):
     """
-    Removes the authenticated user's ID from the request and flushes their
+    Remove the authenticated user's ID from the request and flushes their
     session data.
     """
     # Dispatch the signal before the user is logged out so the receivers have a
@@ -169,7 +169,7 @@ def logout(request):
 
 def get_user_model():
     """
-    Returns the User model that is active in this project.
+    Return the User model that is active in this project.
     """
     try:
         return django_apps.get_model(settings.AUTH_USER_MODEL, require_ready=False)
@@ -183,7 +183,7 @@ def get_user_model():
 
 def get_user(request):
     """
-    Returns the user model instance associated with the given request session.
+    Return the user model instance associated with the given request session.
     If no user is retrieved an instance of `AnonymousUser` is returned.
     """
     from .models import AnonymousUser
@@ -213,7 +213,7 @@ def get_user(request):
 
 def get_permission_codename(action, opts):
     """
-    Returns the codename of the permission for the specified action.
+    Return the codename of the permission for the specified action.
     """
     return '%s_%s' % (action, opts.model_name)
 
@@ -222,7 +222,7 @@ def update_session_auth_hash(request, user):
     """
     Updating a user's password logs out all sessions for the user.
 
-    This function takes the current request and the updated user object from
+    Take the current request and the updated user object from
     which the new session hash will be derived and updates the session hash
     appropriately to prevent a password change from logging out the session
     from which the password was changed.
