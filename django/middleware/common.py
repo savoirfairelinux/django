@@ -17,7 +17,7 @@ class CommonMiddleware(MiddlewareMixin):
     """
     "Common" middleware for taking care of some basic operations:
 
-        - Forbids access to User-Agents in settings.DISALLOWED_USER_AGENTS
+        - Forbid access to User-Agents in settings.DISALLOWED_USER_AGENTS
 
         - URL rewriting: Based on the APPEND_SLASH and PREPEND_WWW settings,
           this middleware appends missing slashes and/or prepends missing
@@ -173,7 +173,7 @@ class BrokenLinkEmailsMiddleware(MiddlewareMixin):
 
     def is_internal_request(self, domain, referer):
         """
-        Returns True if the referring URL is the same domain as the current request.
+        Return True if the referring URL is the same domain as the current request.
         """
         # Different subdomains are treated as different domains.
         return bool(re.match("^https?://%s/" % re.escape(domain), referer))
