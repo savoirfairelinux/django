@@ -191,7 +191,7 @@ class Field(RegisterLookupMixin):
 
     def __repr__(self):
         """
-        Displays the module, class and name of the field.
+        Display the module, class and name of the field.
         """
         path = '%s.%s' % (self.__class__.__module__, self.__class__.__name__)
         name = getattr(self, 'name', None)
@@ -355,7 +355,7 @@ class Field(RegisterLookupMixin):
 
     def deconstruct(self):
         """
-        Returns enough information to recreate the field as a 4-tuple:
+        Return enough information to recreate the field as a 4-tuple:
 
          * The name of the field on the model, if contribute_to_class has been run
          * The import path of the field, including the class: django.db.models.IntegerField
@@ -512,9 +512,9 @@ class Field(RegisterLookupMixin):
 
     def to_python(self, value):
         """
-        Converts the input value into the expected Python data type, raising
+        Convert the input value into the expected Python data type, raising
         django.core.exceptions.ValidationError if the data can't be converted.
-        Returns the converted value. Subclasses should override this.
+        Return the converted value. Subclasses should override this.
         """
         return value
 
@@ -544,7 +544,7 @@ class Field(RegisterLookupMixin):
 
     def validate(self, value, model_instance):
         """
-        Validates value and throws ValidationError. Subclasses should override
+        Validate value and throw ValidationError. Subclasses should override
         this to provide validation logic.
         """
         if not self.editable:
@@ -710,7 +710,7 @@ class Field(RegisterLookupMixin):
 
     def pre_save(self, model_instance, add):
         """
-        Returns field's value just before saving.
+        Return field's value just before saving.
         """
         return getattr(model_instance, self.attname)
 
@@ -723,7 +723,7 @@ class Field(RegisterLookupMixin):
         return value
 
     def get_db_prep_value(self, value, connection, prepared=False):
-        """Returns field's value prepared for interacting with the database
+        """Return field's value prepared for interacting with the database
         backend.
 
         Used by the default implementations of get_db_prep_save().
@@ -734,20 +734,20 @@ class Field(RegisterLookupMixin):
 
     def get_db_prep_save(self, value, connection):
         """
-        Returns field's value prepared for saving into a database.
+        Return field's value prepared for saving into a database.
         """
         return self.get_db_prep_value(value, connection=connection,
                                       prepared=False)
 
     def has_default(self):
         """
-        Returns a boolean of whether this field has a default value.
+        Return a boolean of whether this field has a default value.
         """
         return self.default is not NOT_PROVIDED
 
     def get_default(self):
         """
-        Returns the default value for this field.
+        Return the default value for this field.
         """
         return self._get_default()
 
@@ -760,10 +760,10 @@ class Field(RegisterLookupMixin):
 
         if not self.empty_strings_allowed or self.null and not connection.features.interprets_empty_strings_as_nulls:
             return return_None
-        return str  # returns empty string
+        return str  # return empty string
 
     def get_choices(self, include_blank=True, blank_choice=BLANK_CHOICE_DASH, limit_choices_to=None):
-        """Returns choices with a default blank choices included, for use
+        """Return choices with a default blank choices included, for use
         as SelectField choices for this field."""
         blank_defined = False
         choices = list(self.choices) if self.choices else []
@@ -793,7 +793,7 @@ class Field(RegisterLookupMixin):
 
     def value_to_string(self, obj):
         """
-        Returns a string value of this field from the passed obj.
+        Return a string value of this field from the passed obj.
         This is used by the serialization framework.
         """
         return force_text(self.value_from_object(obj))
@@ -814,7 +814,7 @@ class Field(RegisterLookupMixin):
 
     def formfield(self, form_class=None, choices_form_class=None, **kwargs):
         """
-        Returns a django.forms.Field instance for this database Field.
+        Return a django.forms.Field instance for this database Field.
         """
         defaults = {'required': not self.blank,
                     'label': capfirst(self.verbose_name),
@@ -852,7 +852,7 @@ class Field(RegisterLookupMixin):
 
     def value_from_object(self, obj):
         """
-        Returns the value of this field in the given model instance.
+        Return the value of this field in the given model instance.
         """
         return getattr(obj, self.attname)
 
@@ -1137,7 +1137,7 @@ class DateField(DateTimeCheckMixin, Field):
 
     def _check_fix_default_value(self):
         """
-        Adds a warning to the checks framework stating, that using an actual
+        Add a warning to the checks framework stating, that using an actual
         date or datetime value is probably wrong; it's only being evaluated on
         server start-up.
 
@@ -1279,7 +1279,7 @@ class DateTimeField(DateField):
 
     def _check_fix_default_value(self):
         """
-        Adds a warning to the checks framework stating, that using an actual
+        Add a warning to the checks framework stating, that using an actual
         date or datetime value is probably wrong; it's only being evaluated on
         server start-up.
 
@@ -1539,7 +1539,7 @@ class DecimalField(Field):
 
     def format_number(self, value):
         """
-        Formats a number into a string with the requisite number of digits and
+        Format a number into a string with the requisite number of digits and
         decimal places.
         """
         # Method moved to django.db.backends.utils.
@@ -1569,9 +1569,9 @@ class DecimalField(Field):
 
 
 class DurationField(Field):
-    """Stores timedelta objects.
+    """Store timedelta objects.
 
-    Uses interval on postgres, INVERAL DAY TO SECOND on Oracle, and bigint of
+    Use interval on postgres, INVERAL DAY TO SECOND on Oracle, and bigint of
     microseconds on other databases.
     """
     empty_strings_allowed = False
@@ -2127,7 +2127,7 @@ class TimeField(DateTimeCheckMixin, Field):
 
     def _check_fix_default_value(self):
         """
-        Adds a warning to the checks framework stating, that using an actual
+        Add a warning to the checks framework stating, that using an actual
         time or datetime value is probably wrong; it's only being evaluated on
         server start-up.
 

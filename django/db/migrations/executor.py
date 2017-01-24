@@ -9,7 +9,7 @@ from .state import ProjectState
 
 class MigrationExecutor:
     """
-    End-to-end migration execution - loads migrations, and runs them
+    End-to-end migration execution - load migrations, and run them
     up or down to a specified set of targets.
     """
 
@@ -21,7 +21,7 @@ class MigrationExecutor:
 
     def migration_plan(self, targets, clean_start=False):
         """
-        Given a set of targets, returns a list of (Migration instance, backwards?).
+        Given a set of targets, return a list of (Migration instance, backwards?).
         """
         plan = []
         if clean_start:
@@ -81,7 +81,7 @@ class MigrationExecutor:
 
     def migrate(self, targets, plan=None, state=None, fake=False, fake_initial=False):
         """
-        Migrates the database up to the given targets.
+        Migrate the database up to the given targets.
 
         Django first needs to create all project states before a migration is
         (un)applied and in a second step run all the database operations.
@@ -208,7 +208,7 @@ class MigrationExecutor:
 
     def collect_sql(self, plan):
         """
-        Takes a migration plan and returns a list of collected SQL
+        Take a migration plan and return a list of collected SQL
         statements that represent the best-efforts version of that plan.
         """
         statements = []
@@ -226,7 +226,7 @@ class MigrationExecutor:
 
     def apply_migration(self, state, migration, fake=False, fake_initial=False):
         """
-        Runs a migration forwards.
+        Run a migration forwards.
         """
         if self.progress_callback:
             self.progress_callback("apply_start", migration, fake)
@@ -253,7 +253,7 @@ class MigrationExecutor:
 
     def unapply_migration(self, state, migration, fake=False):
         """
-        Runs a migration backwards.
+        Run a migration backwards.
         """
         if self.progress_callback:
             self.progress_callback("unapply_start", migration, fake)
@@ -290,7 +290,7 @@ class MigrationExecutor:
 
     def detect_soft_applied(self, project_state, migration):
         """
-        Tests whether a migration has been implicitly applied - that the
+        Test whether a migration has been implicitly applied - that the
         tables or columns it would create exist. This is intended only for use
         on initial migrations (as it only looks for CreateModel and AddField).
         """

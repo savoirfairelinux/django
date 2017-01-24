@@ -37,10 +37,10 @@ class BaseManager:
 
     def deconstruct(self):
         """
-        Returns a 5-tuple of the form (as_manager (True), manager_class,
+        Return a 5-tuple of the form (as_manager (True), manager_class,
         queryset_class, args, kwargs).
 
-        Raises a ValueError if the manager is dynamically generated.
+        Raise a ValueError if the manager is dynamically generated.
         """
         qs_class = self._queryset_class
         if getattr(self, '_built_with_as_manager', False):
@@ -118,7 +118,7 @@ class BaseManager:
 
     def _set_creation_counter(self):
         """
-        Sets the creation counter value for this instance and increments the
+        Set the creation counter value for this instance and increments the
         class-level copy.
         """
         self.creation_counter = BaseManager.creation_counter
@@ -140,7 +140,7 @@ class BaseManager:
 
     def get_queryset(self):
         """
-        Returns a new QuerySet object.  Subclasses can override this method to
+        Return a new QuerySet object.  Subclasses can override this method to
         easily customize the behavior of the Manager.
         """
         return self._queryset_class(model=self.model, using=self._db, hints=self._hints)

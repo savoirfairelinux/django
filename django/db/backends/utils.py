@@ -178,7 +178,7 @@ def rev_typecast_decimal(d):
 
 
 def truncate_name(name, length=None, hash_len=4):
-    """Shortens a string to a repeatable mangled version with the given length.
+    """Shorten a string to a repeatable mangled version with the given length.
     """
     if length is None or len(name) <= length:
         return name
@@ -189,7 +189,7 @@ def truncate_name(name, length=None, hash_len=4):
 
 def format_number(value, max_digits, decimal_places):
     """
-    Formats a number into a string with the requisite number of digits and
+    Format a number into a string with the requisite number of digits and
     decimal places.
     """
     if value is None:

@@ -41,7 +41,7 @@ class BaseDatabaseIntrospection:
 
     def table_names(self, cursor=None, include_views=False):
         """
-        Returns a list of names of all tables that exist in the database.
+        Return a list of names of all tables that exist in the database.
         The returned table list is sorted by Python's default sorting. We
         do NOT use database's ORDER BY here to avoid subtle differences
         in sorting order between databases.
@@ -56,14 +56,14 @@ class BaseDatabaseIntrospection:
 
     def get_table_list(self, cursor):
         """
-        Returns an unsorted list of TableInfo named tuples of all tables and
+        Return an unsorted list of TableInfo named tuples of all tables and
         views that exist in the database.
         """
         raise NotImplementedError('subclasses of BaseDatabaseIntrospection may require a get_table_list() method')
 
     def django_table_names(self, only_existing=False, include_views=True):
         """
-        Returns a list of all table names that have associated Django models and
+        Return a list of all table names that have associated Django models and
         are in INSTALLED_APPS.
 
         If only_existing is True, the resulting list will only include the tables
@@ -92,7 +92,7 @@ class BaseDatabaseIntrospection:
         return tables
 
     def installed_models(self, tables):
-        "Returns a set of all models represented by the provided list of table names."
+        "Return a set of all models represented by the provided list of table names."
         from django.apps import apps
         from django.db import router
         all_models = []
@@ -105,7 +105,7 @@ class BaseDatabaseIntrospection:
         }
 
     def sequence_list(self):
-        "Returns a list of information about all DB sequences for all models in all apps."
+        "Return a list of information about all DB sequences for all models in all apps."
         from django.apps import apps
         from django.db import models, router
 
@@ -139,7 +139,7 @@ class BaseDatabaseIntrospection:
 
     def get_primary_key_column(self, cursor, table_name):
         """
-        Returns the name of the primary key column for the given table.
+        Return the name of the primary key column for the given table.
         """
         for constraint in self.get_constraints(cursor, table_name).values():
             if constraint['primary_key']:
@@ -149,7 +149,7 @@ class BaseDatabaseIntrospection:
     def get_indexes(self, cursor, table_name):
         """
         Deprecated in Django 1.11, use get_constraints instead.
-        Returns a dictionary of indexed fieldname -> infodict for the given
+        Return a dictionary of indexed fieldname -> infodict for the given
         table, where each infodict is in the format:
             {'primary_key': boolean representing whether it's the primary key,
              'unique': boolean representing whether it's a unique index}
@@ -160,10 +160,10 @@ class BaseDatabaseIntrospection:
 
     def get_constraints(self, cursor, table_name):
         """
-        Retrieves any constraints or keys (unique, pk, fk, check, index)
+        Retrieve any constraints or keys (unique, pk, fk, check, index)
         across one or more columns.
 
-        Returns a dict mapping constraint names to their attributes,
+        Return a dict mapping constraint names to their attributes,
         where attributes is a dict with keys:
          * columns: List of columns this covers
          * primary_key: True if primary key, False otherwise

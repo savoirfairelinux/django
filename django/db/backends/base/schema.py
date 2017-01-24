@@ -21,7 +21,7 @@ def _related_non_m2m_objects(old_field, new_field):
 
 class BaseDatabaseSchemaEditor:
     """
-    This class (and its subclasses) are responsible for emitting schema-changing
+    This class and its subclasses are responsible for emitting schema-changing
     statements to the databases - model creation/removal/alteration, field
     renaming, index fiddling, and so on.
 
@@ -97,7 +97,7 @@ class BaseDatabaseSchemaEditor:
 
     def execute(self, sql, params=()):
         """
-        Executes the given SQL statement, with optional parameters.
+        Execute the given SQL statement, with optional parameters.
         """
         # Don't perform the transactional DDL check if SQL is being collected
         # as it's not going to be executed anyway.
@@ -124,7 +124,7 @@ class BaseDatabaseSchemaEditor:
     @classmethod
     def _digest(cls, *args):
         """
-        Generates a 32-bit digest of a set of arguments that can be used to
+        Generate a 32-bit digest of a set of arguments that can be used to
         shorten identifying names.
         """
         h = hashlib.md5()
@@ -136,7 +136,7 @@ class BaseDatabaseSchemaEditor:
 
     def column_sql(self, model, field, include_default=False):
         """
-        Takes a field and returns its column definition.
+        Take a field and returns its column definition.
         The field must already have had set_attributes_from_name called.
         """
         # Get the column's type and use that as the basis of the SQL
@@ -200,7 +200,7 @@ class BaseDatabaseSchemaEditor:
 
     def effective_default(self, field):
         """
-        Returns a field's effective database default value
+        Return a field's effective database default value
         """
         if field.has_default():
             default = field.get_default()
@@ -230,7 +230,7 @@ class BaseDatabaseSchemaEditor:
 
     def quote_value(self, value):
         """
-        Returns a quoted version of the value so it's safe to use in an SQL
+        Return a quoted version of the value so it's safe to use in an SQL
         string. This is not safe against injection from user code; it is
         intended only for use in making SQL scripts or preparing default values
         for particularly tricky backends (defaults are not user-defined, though,
@@ -242,7 +242,7 @@ class BaseDatabaseSchemaEditor:
 
     def create_model(self, model):
         """
-        Takes a model and creates a table for it in the database.
+        Take a model and creates a table for it in the database.
         Will also create any accompanying indexes or unique constraints.
         """
         # Create column SQL, add FK deferreds if needed
@@ -311,7 +311,7 @@ class BaseDatabaseSchemaEditor:
 
     def delete_model(self, model):
         """
-        Deletes a model from the database.
+        Delete a model from the database.
         """
         # Handle auto-created intermediary models
         for field in model._meta.local_many_to_many:
@@ -337,7 +337,7 @@ class BaseDatabaseSchemaEditor:
 
     def alter_unique_together(self, model, old_unique_together, new_unique_together):
         """
-        Deals with a model changing its unique_together.
+        Deal with a model changing its unique_together.
         Note: The input unique_togethers must be doubly-nested, not the single-
         nested ["foo", "bar"] format.
         """
@@ -353,7 +353,7 @@ class BaseDatabaseSchemaEditor:
 
     def alter_index_together(self, model, old_index_together, new_index_together):
         """
-        Deals with a model changing its index_together.
+        Deal with a model changing its index_together.
         Note: The input index_togethers must be doubly-nested, not the single-
         nested ["foo", "bar"] format.
         """
@@ -380,7 +380,7 @@ class BaseDatabaseSchemaEditor:
 
     def alter_db_table(self, model, old_db_table, new_db_table):
         """
-        Renames the table a model points to.
+        Rename the table a model points to.
         """
         if (old_db_table == new_db_table or
             (self.connection.features.ignores_table_name_case and
@@ -393,7 +393,7 @@ class BaseDatabaseSchemaEditor:
 
     def alter_db_tablespace(self, model, old_db_tablespace, new_db_tablespace):
         """
-        Moves a model's table between tablespaces
+        Move a model's table between tablespaces
         """
         self.execute(self.sql_retablespace_table % {
             "table": self.quote_name(model._meta.db_table),
@@ -403,7 +403,7 @@ class BaseDatabaseSchemaEditor:
 
     def add_field(self, model, field):
         """
-        Creates a field on a model.
+        Create a field on a model.
         Usually involves adding a column, but may involve adding a
         table instead (for M2M fields)
         """
@@ -447,7 +447,7 @@ class BaseDatabaseSchemaEditor:
 
     def remove_field(self, model, field):
         """
-        Removes a field from a model. Usually involves deleting a column,
+        Remove a field from a model. Usually involves deleting a column,
         but for M2Ms may involve deleting a table.
         """
         # Special-case implicit M2M tables
@@ -473,9 +473,9 @@ class BaseDatabaseSchemaEditor:
 
     def alter_field(self, model, old_field, new_field, strict=False):
         """
-        Allows a field's type, uniqueness, nullability, default, column,
+        Allow a field's type, uniqueness, nullability, default, column,
         constraints etc. to be modified.
-        Requires a copy of the old field as well so we can only perform
+        Require a copy of the old field as well so we can only perform
         changes that are required.
         If strict is true, raises errors if the old column does not match old_field precisely.
         """
@@ -837,7 +837,7 @@ class BaseDatabaseSchemaEditor:
 
     def _create_index_name(self, model, column_names, suffix=""):
         """
-        Generates a unique name for an index/unique constraint.
+        Generate a unique name for an index/unique constraint.
 
         The name is divided into 3 parts: the table name, the column names,
         and a unique digest and suffix.
@@ -968,7 +968,7 @@ class BaseDatabaseSchemaEditor:
                           primary_key=None, index=None, foreign_key=None,
                           check=None):
         """
-        Returns all constraint names matching the columns and conditions
+        Return all constraint names matching the columns and conditions
         """
         if column_names is not None:
             column_names = [

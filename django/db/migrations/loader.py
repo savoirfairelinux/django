@@ -17,7 +17,7 @@ MIGRATIONS_MODULE_NAME = 'migrations'
 
 class MigrationLoader:
     """
-    Loads migration files from disk, and their status from the database.
+    Load migration files from disk, and their status from the database.
 
     Migration files are expected to live in the "migrations" directory of
     an app. Their names are entirely unimportant from a code perspective,
@@ -63,7 +63,7 @@ class MigrationLoader:
 
     def load_disk(self):
         """
-        Loads the migrations from all INSTALLED_APPS from disk.
+        Load the migrations from all INSTALLED_APPS from disk.
         """
         self.disk_migrations = {}
         self.unmigrated_apps = set()
@@ -119,11 +119,11 @@ class MigrationLoader:
                 )
 
     def get_migration(self, app_label, name_prefix):
-        "Gets the migration exactly named, or raises `graph.NodeNotFoundError`"
+        "Get the migration exactly named, or raise `graph.NodeNotFoundError`"
         return self.graph.nodes[app_label, name_prefix]
 
     def get_migration_by_prefix(self, app_label, name_prefix):
-        "Returns the migration(s) which match the given app label and name _prefix_"
+        "Return the migration(s) which match the given app label and name _prefix_"
         # Do the search
         results = []
         for migration_app_label, migration_name in self.disk_migrations:
@@ -192,7 +192,7 @@ class MigrationLoader:
 
     def build_graph(self):
         """
-        Builds a migration dependency graph using both the disk and database.
+        Build a migration dependency graph using both the disk and database.
         You'll need to rebuild the graph if you apply migrations. This isn't
         usually a problem as generally migration stuff runs in a one-shot process.
         """
@@ -294,8 +294,8 @@ class MigrationLoader:
 
     def detect_conflicts(self):
         """
-        Looks through the loaded graph and detects any conflicts - apps
-        with more than one leaf migration. Returns a dict of the app labels
+        Look through the loaded graph and detect any conflicts - apps
+        with more than one leaf migration. Return a dict of the app labels
         that conflict with the migration names that conflict.
         """
         seen_apps = {}
@@ -308,7 +308,7 @@ class MigrationLoader:
 
     def project_state(self, nodes=None, at_end=True):
         """
-        Returns a ProjectState object representing the most recent state
+        Return a ProjectState object representing the most recent state
         that the migrations we loaded represent.
 
         See graph.make_state for the meaning of "nodes" and "at_end"

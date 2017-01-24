@@ -53,7 +53,7 @@ class DatabaseSchemaEditor(BaseDatabaseSchemaEditor):
 
     def _alter_column_type_sql(self, table, old_field, new_field, new_type):
         """
-        Makes ALTER TYPE with SERIAL make sense.
+        Make ALTER TYPE with SERIAL make sense.
         """
         if new_type.lower() in ("serial", "bigserial"):
             column = new_field.column

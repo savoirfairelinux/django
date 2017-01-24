@@ -50,7 +50,7 @@ class DatabaseIntrospection(BaseDatabaseIntrospection):
 
     def get_table_list(self, cursor):
         """
-        Returns a list of table and view names in the current database.
+        Return a list of table and view names in the current database.
         """
         cursor.execute("SHOW FULL TABLES")
         return [TableInfo(row[0], {'BASE TABLE': 't', 'VIEW': 'v'}.get(row[1]))
@@ -58,7 +58,7 @@ class DatabaseIntrospection(BaseDatabaseIntrospection):
 
     def get_table_description(self, cursor, table_name):
         """
-        Returns a description of the table, with the DB-API cursor.description interface."
+        Return a description of the table, with the DB-API cursor.description interface."
         """
         # information_schema database gives more accurate results for some figures:
         # - varchar length returned by cursor.description is an internal length,
@@ -98,7 +98,7 @@ class DatabaseIntrospection(BaseDatabaseIntrospection):
 
     def get_relations(self, cursor, table_name):
         """
-        Returns a dictionary of {field_name: (field_name_other_table, other_table)}
+        Return a dictionary of {field_name: (field_name_other_table, other_table)}
         representing all relationships to the given table.
         """
         constraints = self.get_key_columns(cursor, table_name)
@@ -109,7 +109,7 @@ class DatabaseIntrospection(BaseDatabaseIntrospection):
 
     def get_key_columns(self, cursor, table_name):
         """
-        Returns a list of (column_name, referenced_table_name, referenced_column_name) for all
+        Return a list of (column_name, referenced_table_name, referenced_column_name) for all
         key columns in given table.
         """
         key_columns = []
@@ -152,7 +152,7 @@ class DatabaseIntrospection(BaseDatabaseIntrospection):
 
     def get_storage_engine(self, cursor, table_name):
         """
-        Retrieves the storage engine for a given table. Returns the default
+        Retrieve the storage engine for a given table. Return the default
         storage engine if the table doesn't exist.
         """
         cursor.execute(
@@ -166,7 +166,7 @@ class DatabaseIntrospection(BaseDatabaseIntrospection):
 
     def get_constraints(self, cursor, table_name):
         """
-        Retrieves any constraints or keys (unique, pk, fk, check, index) across one or more columns.
+        Retrieve any constraints or keys (unique, pk, fk, check, index) across one or more columns.
         """
         constraints = {}
         # Get the actual constraint names and columns

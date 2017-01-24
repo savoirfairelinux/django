@@ -47,7 +47,7 @@ class QueryWrapper:
 
 class Q(tree.Node):
     """
-    Encapsulates filters as objects that can then be combined logically (using
+    Encapsulate filters as objects that can then be combined logically (using
     `&` and `|`).
     """
     # Connection types
@@ -97,8 +97,8 @@ class DeferredAttribute:
 
     def __get__(self, instance, cls=None):
         """
-        Retrieves and caches the value from the datastore on the first lookup.
-        Returns the cached value.
+        Retrieve and caches the value from the datastore on the first lookup.
+        Return the cached value.
         """
         if instance is None:
             return self
@@ -196,7 +196,7 @@ class RegisterLookupMixin:
 
 def select_related_descend(field, restricted, requested, load_fields, reverse=False):
     """
-    Returns True if this field should be used to descend deeper for
+    Return True if this field should be used to descend deeper for
     select_related() purposes. Used by both the query construction code
     (sql.query.fill_related_selections()) and the model instance creation code
     (query.get_klass_info()).

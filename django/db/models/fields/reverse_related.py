@@ -66,7 +66,7 @@ class ForeignObjectRel:
     @property
     def target_field(self):
         """
-        When filtering against this relation, returns the field on the remote
+        When filtering against this relation, return the field on the remote
         model against which the filtering should happen.
         """
         target_fields = self.get_path_info()[-1].target_fields

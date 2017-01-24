@@ -289,7 +289,7 @@ class Options:
 
     def setup_proxy(self, target):
         """
-        Does the internal setup so that the current model is a proxy for
+        Do the internal setup so that the current model is a proxy for
         "target".
         """
         self.pk = target._meta.pk
@@ -432,7 +432,7 @@ class Options:
     @cached_property
     def fields(self):
         """
-        Returns a list of all forward fields on the model and its parents,
+        Return a list of all forward fields on the model and its parents,
         excluding ManyToManyFields.
 
         Private API intended only to be used by Django itself; get_fields()
@@ -466,7 +466,7 @@ class Options:
     @cached_property
     def concrete_fields(self):
         """
-        Returns a list of all concrete fields on the model and its parents.
+        Return a list of all concrete fields on the model and its parents.
 
         Private API intended only to be used by Django itself; get_fields()
         combined with filtering of field properties is the public API for
@@ -479,7 +479,7 @@ class Options:
     @cached_property
     def local_concrete_fields(self):
         """
-        Returns a list of all concrete fields on the model.
+        Return a list of all concrete fields on the model.
 
         Private API intended only to be used by Django itself; get_fields()
         combined with filtering of field properties is the public API for
@@ -492,7 +492,7 @@ class Options:
     @cached_property
     def many_to_many(self):
         """
-        Returns a list of all many to many fields on the model and its parents.
+        Return a list of all many to many fields on the model and its parents.
 
         Private API intended only to be used by Django itself; get_fields()
         combined with filtering of field properties is the public API for
@@ -506,7 +506,7 @@ class Options:
     @cached_property
     def related_objects(self):
         """
-        Returns all related objects pointing to the current model. The related
+        Return all related objects pointing to the current model. The related
         objects can come from a one-to-one, one-to-many, or many-to-many field
         relation type.
 
@@ -594,7 +594,7 @@ class Options:
 
     def get_parent_list(self):
         """
-        Returns all the ancestors of this model as a list ordered by MRO.
+        Return all the ancestors of this model as a list ordered by MRO.
         Useful for determining if something is an ancestor, regardless of lineage.
         """
         result = OrderedSet(self.parents)
@@ -605,12 +605,12 @@ class Options:
 
     def get_ancestor_link(self, ancestor):
         """
-        Returns the field on the current model which points to the given
+        Return the field on the current model which points to the given
         "ancestor". This is possible an indirect link (a pointer to a parent
         model, which points, eventually, to the ancestor). Used when
         constructing table joins for model inheritance.
 
-        Returns None if the model isn't an ancestor of this one.
+        Return None if the model isn't an ancestor of this one.
         """
         if ancestor in self.parents:
             return self.parents[ancestor]
@@ -722,7 +722,7 @@ class Options:
 
     def get_fields(self, include_parents=True, include_hidden=False):
         """
-        Returns a list of fields associated to the model. By default, includes
+        Return a list of fields associated to the model. By default, include
         forward and reverse fields, fields derived from inheritance, but not
         hidden fields. The returned fields can be changed using the parameters:
 

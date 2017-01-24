@@ -215,13 +215,13 @@ class DatabaseWrapper(BaseDatabaseWrapper):
 
     def check_constraints(self, table_names=None):
         """
-        Checks each table name in `table_names` for rows with invalid foreign
+        Check each table name in `table_names` for rows with invalid foreign
         key references. This method is intended to be used in conjunction with
         `disable_constraint_checking()` and `enable_constraint_checking()`, to
         determine if rows with invalid references were entered while constraint
         checks were off.
 
-        Raises an IntegrityError on the first invalid foreign key reference
+        Raise an IntegrityError on the first invalid foreign key reference
         encountered (if any) and provides detailed information about the
         invalid reference in the error message.
 

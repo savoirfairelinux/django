@@ -38,22 +38,22 @@ def set_autocommit(autocommit, using=None):
 
 def commit(using=None):
     """
-    Commits a transaction.
+    Commit a transaction.
     """
     get_connection(using).commit()
 
 
 def rollback(using=None):
     """
-    Rolls back a transaction.
+    Roll back a transaction.
     """
     get_connection(using).rollback()
 
 
 def savepoint(using=None):
     """
-    Creates a savepoint (if supported and required by the backend) inside the
-    current transaction. Returns an identifier for the savepoint that will be
+    Create a savepoint (if supported and required by the backend) inside the
+    current transaction. Return an identifier for the savepoint that will be
     used for the subsequent rollback or commit.
     """
     return get_connection(using).savepoint()
@@ -61,7 +61,7 @@ def savepoint(using=None):
 
 def savepoint_rollback(sid, using=None):
     """
-    Rolls back the most recent savepoint (if one exists). Does nothing if
+    Roll back the most recent savepoint (if one exists). Do nothing if
     savepoints are not supported.
     """
     get_connection(using).savepoint_rollback(sid)
@@ -69,7 +69,7 @@ def savepoint_rollback(sid, using=None):
 
 def savepoint_commit(sid, using=None):
     """
-    Commits the most recent savepoint (if one exists). Does nothing if
+    Commit the most recent savepoint (if one exists). Do nothing if
     savepoints are not supported.
     """
     get_connection(using).savepoint_commit(sid)
@@ -77,21 +77,21 @@ def savepoint_commit(sid, using=None):
 
 def clean_savepoints(using=None):
     """
-    Resets the counter used to generate unique savepoint ids in this thread.
+    Reset the counter used to generate unique savepoint ids in this thread.
     """
     get_connection(using).clean_savepoints()
 
 
 def get_rollback(using=None):
     """
-    Gets the "needs rollback" flag -- for *advanced use* only.
+    Get the "needs rollback" flag -- for *advanced use* only.
     """
     return get_connection(using).get_rollback()
 
 
 def set_rollback(rollback, using=None):
     """
-    Sets or unsets the "needs rollback" flag -- for *advanced use* only.
+    Set or unset the "needs rollback" flag -- for *advanced use* only.
 
     When `rollback` is `True`, it triggers a rollback when exiting the
     innermost enclosing atomic block that has `savepoint=True` (that's the
@@ -118,7 +118,7 @@ def on_commit(func, using=None):
 
 class Atomic(ContextDecorator):
     """
-    This class guarantees the atomic execution of a given block.
+    Guarantee the atomic execution of a given block.
 
     An instance can be used either as a decorator or as a context manager.
 

@@ -323,7 +323,7 @@ class ModelBase(type):
 
     def _prepare(cls):
         """
-        Creates some methods once self._meta has been populated.
+        Create some methods once self._meta has been populated.
         """
         opts = cls._meta
         opts._prepare(cls)
@@ -561,7 +561,7 @@ class Model(metaclass=ModelBase):
 
     def get_deferred_fields(self):
         """
-        Returns a set containing names of deferred fields for this instance.
+        Return a set containing names of deferred fields for this instance.
         """
         return {
             f.attname for f in self._meta.concrete_fields
@@ -570,7 +570,7 @@ class Model(metaclass=ModelBase):
 
     def refresh_from_db(self, using=None, fields=None):
         """
-        Reloads field values from the database.
+        Reload field values from the database.
 
         By default, the reloading happens from the database this instance was
         loaded from, or by the read router if this instance wasn't loaded from
@@ -622,7 +622,7 @@ class Model(metaclass=ModelBase):
 
     def serializable_value(self, field_name):
         """
-        Returns the value of the field name for this instance. If the field is
+        Return the value of the field name for this instance. If the field is
         a foreign key, returns the id value, instead of the object. If there's
         no Field object with this name on the model, the model attribute's
         value is returned directly.
@@ -640,7 +640,7 @@ class Model(metaclass=ModelBase):
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
         """
-        Saves the current instance. Override this in a subclass if you want to
+        Save the current instance. Override this in a subclass if you want to
         control the saving process.
 
         The 'force_insert' and 'force_update' parameters can be used to insist
@@ -721,7 +721,7 @@ class Model(metaclass=ModelBase):
     def save_base(self, raw=False, force_insert=False,
                   force_update=False, using=None, update_fields=None):
         """
-        Handles the parts of saving which should be done only once per save,
+        Handle the parts of saving which should be done only once per save,
         yet need to be done in raw saves, too. This includes some sanity
         checks and signal sending.
 
@@ -762,7 +762,7 @@ class Model(metaclass=ModelBase):
 
     def _save_parents(self, cls, using, update_fields):
         """
-        Saves all the parents of cls using values from self.
+        Save all the parents of cls using values from self.
         """
         meta = cls._meta
         for parent, field in meta.parents.items():
@@ -787,7 +787,7 @@ class Model(metaclass=ModelBase):
     def _save_table(self, raw=False, cls=None, force_insert=False,
                     force_update=False, using=None, update_fields=None):
         """
-        Does the heavy-lifting involved in saving. Updates or inserts the data
+        Do the heavy-lifting involved in saving. Update or insert the data
         for a single table.
         """
         meta = cls._meta
@@ -936,7 +936,7 @@ class Model(metaclass=ModelBase):
 
     def validate_unique(self, exclude=None):
         """
-        Checks unique constraints on the model and raises ``ValidationError``
+        Check unique constraints on the model and raises ``ValidationError``
         if any failed.
         """
         unique_checks, date_checks = self._get_unique_checks(exclude=exclude)
@@ -1125,8 +1125,8 @@ class Model(metaclass=ModelBase):
 
     def full_clean(self, exclude=None, validate_unique=True):
         """
-        Calls clean_fields, clean, and validate_unique, on the model,
-        and raises a ``ValidationError`` for any errors that occurred.
+        Call clean_fields, clean, and validate_unique, on the model,
+        and raise a ``ValidationError`` for any errors that occurred.
         """
         errors = {}
         if exclude is None:
@@ -1161,7 +1161,7 @@ class Model(metaclass=ModelBase):
 
     def clean_fields(self, exclude=None):
         """
-        Cleans all fields and raises a ValidationError containing a dict
+        Clean all fields and raise a ValidationError containing a dict
         of all validation errors if any occur.
         """
         if exclude is None:

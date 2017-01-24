@@ -18,7 +18,7 @@ from .topological_sort import stable_topological_sort
 
 class MigrationAutodetector:
     """
-    Takes a pair of ProjectStates, and compares them to see what the
+    Take a pair of ProjectStates, and compare them to see what the
     first would need doing to make it match the second (the second
     usually being the project's current state).
 
@@ -38,7 +38,7 @@ class MigrationAutodetector:
     def changes(self, graph, trim_to_apps=None, convert_apps=None, migration_name=None):
         """
         Main entry point to produce a list of applicable changes.
-        Takes a graph to base names on and an optional set of apps
+        Take a graph to base names on and an optional set of apps
         to try and restrict to (restriction is not guaranteed)
         """
         changes = self._detect_changes(convert_apps, graph)
@@ -104,7 +104,7 @@ class MigrationAutodetector:
 
     def _detect_changes(self, convert_apps=None, graph=None):
         """
-        Returns a dict of migration plans which will achieve the
+        Return a dict of migration plans which will achieve the
         change from from_state to to_state. The dict has app labels
         as keys and a list of migrations as values.
 
@@ -360,7 +360,7 @@ class MigrationAutodetector:
 
     def check_dependency(self, operation, dependency):
         """
-        Returns ``True`` if the given operation depends on the given dependency,
+        Return ``True`` if the given operation depends on the given dependency,
         ``False`` otherwise.
         """
         # Created model
@@ -451,8 +451,8 @@ class MigrationAutodetector:
 
     def generate_renamed_models(self):
         """
-        Finds any renamed models, and generates the operations for them,
-        and removes the old entry from the model lists.
+        Find any renamed models, and generates the operations for them,
+        and remove the old entry from the model lists.
         Must be run before other model-level generation.
         """
         self.renamed_models = {}
@@ -643,7 +643,7 @@ class MigrationAutodetector:
 
     def generate_created_proxies(self):
         """
-        Makes CreateModel statements for proxy models.
+        Make CreateModel statements for proxy models.
         We use the same statements as that way there's less code duplication,
         but of course for proxy models we can skip all that pointless field
         stuff and just chuck out an operation.
@@ -770,7 +770,7 @@ class MigrationAutodetector:
 
     def generate_deleted_proxies(self):
         """
-        Makes DeleteModel statements for proxy models.
+        Make DeleteModel statements for proxy models.
         """
         deleted = set(self.old_proxy_keys) - set(self.new_proxy_keys)
         for app_label, model_name in sorted(deleted):
@@ -785,7 +785,7 @@ class MigrationAutodetector:
 
     def generate_renamed_fields(self):
         """
-        Works out renamed fields
+        Work out renamed fields
         """
         self.renamed_fields = {}
         for app_label, model_name, field_name in sorted(self.new_field_keys - self.old_field_keys):
@@ -818,7 +818,7 @@ class MigrationAutodetector:
 
     def generate_added_fields(self):
         """
-        Fields that have been added
+        Field that have been added
         """
         for app_label, model_name, field_name in sorted(self.new_field_keys - self.old_field_keys):
             self._generate_added_field(app_label, model_name, field_name)
@@ -856,7 +856,7 @@ class MigrationAutodetector:
 
     def generate_removed_fields(self):
         """
-        Fields that have been removed.
+        Field that have been removed.
         """
         for app_label, model_name, field_name in sorted(self.old_field_keys - self.new_field_keys):
             self._generate_removed_field(app_label, model_name, field_name)
@@ -879,7 +879,7 @@ class MigrationAutodetector:
 
     def generate_altered_fields(self):
         """
-        Fields that have been altered.
+        Field that have been altered.
         """
         for app_label, model_name, field_name in sorted(self.old_field_keys.intersection(self.new_field_keys)):
             # Did the field change?
@@ -1057,8 +1057,8 @@ class MigrationAutodetector:
 
     def generate_altered_options(self):
         """
-        Works out if any non-schema-affecting options have changed and
-        makes an operation to represent them in state changes (in case Python
+        Work out if any non-schema-affecting options have changed and
+        make an operation to represent them in state changes (in case Python
         code in migrations needs them)
         """
         models_to_check = self.kept_model_keys.union(
@@ -1137,8 +1137,8 @@ class MigrationAutodetector:
 
     def arrange_for_graph(self, changes, graph, migration_name=None):
         """
-        Takes in a result from changes() and a MigrationGraph,
-        and fixes the names and dependencies of the changes so they
+        Take in a result from changes() and a MigrationGraph,
+        and fix the names and dependencies of the changes so they
         extend the graph from the leaf nodes for each app.
         """
         leaves = graph.leaf_nodes()
@@ -1186,8 +1186,8 @@ class MigrationAutodetector:
 
     def _trim_to_apps(self, changes, app_labels):
         """
-        Takes changes from arrange_for_graph and set of app labels and
-        returns a modified set of changes which trims out as many migrations
+        Take changes from arrange_for_graph and set of app labels and
+        return a modified set of changes which trims out as many migrations
         that are not in app_labels as possible.
         Note that some other migrations may still be present, as they may be
         required dependencies.
@@ -1214,7 +1214,7 @@ class MigrationAutodetector:
     @classmethod
     def suggest_name(cls, ops):
         """
-        Given a set of operations, suggests a name for the migration
+        Given a set of operations, suggest a name for the migration
         they might represent. Names are not guaranteed to be unique,
         but we put some effort in to the fallback name to avoid VCS conflicts
         if we can.
@@ -1237,7 +1237,7 @@ class MigrationAutodetector:
     def parse_number(cls, name):
         """
         Given a migration name, tries to extract a number from the
-        beginning of it. If no number found, returns None.
+        beginning of it. If no number found, return None.
         """
         match = re.match(r'^\d+', name)
         if match:

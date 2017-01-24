@@ -11,7 +11,7 @@ from .loader import MigrationLoader
 
 class MigrationQuestioner:
     """
-    Gives the autodetector responses to questions it might have.
+    Give the autodetector responses to questions it might have.
     This base class has a built-in noninteractive mode, but the
     interactive subclass is what the command-line arguments will use.
     """

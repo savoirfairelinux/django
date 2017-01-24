@@ -23,7 +23,7 @@ NO_DB_ALIAS = '__no_db__'
 
 class BaseDatabaseWrapper:
     """
-    Represents a database connection.
+    Represent a database connection.
     """
     # Mapping of Field objects to their column types.
     data_types = {}
@@ -112,7 +112,7 @@ class BaseDatabaseWrapper:
         """
         Time zone for datetimes stored as naive values in the database.
 
-        Returns a tzinfo object or None.
+        Return a tzinfo object or None.
 
         This is only needed when time zone support is enabled and the database
         doesn't support time zones. (When the database supports time zones,
@@ -154,25 +154,25 @@ class BaseDatabaseWrapper:
     # ##### Backend-specific methods for creating connections and cursors #####
 
     def get_connection_params(self):
-        """Returns a dict of parameters suitable for get_new_connection."""
+        """Return a dict of parameters suitable for get_new_connection."""
         raise NotImplementedError('subclasses of BaseDatabaseWrapper may require a get_connection_params() method')
 
     def get_new_connection(self, conn_params):
-        """Opens a connection to the database."""
+        """Open a connection to the database."""
         raise NotImplementedError('subclasses of BaseDatabaseWrapper may require a get_new_connection() method')
 
     def init_connection_state(self):
-        """Initializes the database connection settings."""
+        """Initialize the database connection settings."""
         raise NotImplementedError('subclasses of BaseDatabaseWrapper may require an init_connection_state() method')
 
     def create_cursor(self, name=None):
-        """Creates a cursor. Assumes that a connection is established."""
+        """Create a cursor. Assume that a connection is established."""
         raise NotImplementedError('subclasses of BaseDatabaseWrapper may require a create_cursor() method')
 
     # ##### Backend-specific methods for creating connections #####
 
     def connect(self):
-        """Connects to the database. Assumes that the connection is closed."""
+        """Connect to the database. Assume that the connection is closed."""
         # Check for invalid configurations.
         self.check_settings()
         # In case the previous connection was closed while in an atomic block
@@ -206,7 +206,7 @@ class BaseDatabaseWrapper:
 
     def ensure_connection(self):
         """
-        Guarantees that a connection to the database is established.
+        Guarantee that a connection to the database is established.
         """
         if self.connection is None:
             with self.wrap_database_errors:
@@ -249,13 +249,13 @@ class BaseDatabaseWrapper:
 
     def cursor(self):
         """
-        Creates a cursor, opening a connection if necessary.
+        Create a cursor, opening a connection if necessary.
         """
         return self._cursor()
 
     def commit(self):
         """
-        Commits a transaction and resets the dirty flag.
+        Commit a transaction and reset the dirty flag.
         """
         self.validate_thread_sharing()
         self.validate_no_atomic_block()
@@ -266,7 +266,7 @@ class BaseDatabaseWrapper:
 
     def rollback(self):
         """
-        Rolls back a transaction and resets the dirty flag.
+        Roll back a transaction and reset the dirty flag.
         """
         self.validate_thread_sharing()
         self.validate_no_atomic_block()
@@ -278,7 +278,7 @@ class BaseDatabaseWrapper:
 
     def close(self):
         """
-        Closes the connection to the database.
+        Close the connection to the database.
         """
         self.validate_thread_sharing()
         self.run_on_commit = []
@@ -319,9 +319,9 @@ class BaseDatabaseWrapper:
 
     def savepoint(self):
         """
-        Creates a savepoint inside the current transaction. Returns an
+        Create a savepoint inside the current transaction. Return an
         identifier for the savepoint that will be used for the subsequent
-        rollback or commit. Does nothing if savepoints are not supported.
+        rollback or commit. Do nothing if savepoints are not supported.
         """
         if not self._savepoint_allowed():
             return
@@ -339,7 +339,7 @@ class BaseDatabaseWrapper:
 
     def savepoint_rollback(self, sid):
         """
-        Rolls back to a savepoint. Does nothing if savepoints are not supported.
+        Roll back to a savepoint. Do nothing if savepoints are not supported.
         """
         if not self._savepoint_allowed():
             return
@@ -354,7 +354,7 @@ class BaseDatabaseWrapper:
 
     def savepoint_commit(self, sid):
         """
-        Releases a savepoint. Does nothing if savepoints are not supported.
+        Release a savepoint. Do nothing if savepoints are not supported.
         """
         if not self._savepoint_allowed():
             return
@@ -364,7 +364,7 @@ class BaseDatabaseWrapper:
 
     def clean_savepoints(self):
         """
-        Resets the counter used to generate unique savepoint ids in this thread.
+        Reset the counter used to generate unique savepoint ids in this thread.
         """
         self.savepoint_state = 0
 
@@ -453,7 +453,7 @@ class BaseDatabaseWrapper:
     @contextmanager
     def constraint_checks_disabled(self):
         """
-        Context manager that disables foreign key constraint checking.
+        Disable foreign key constraint checking.
         """
         disabled = self.disable_constraint_checking()
         try:
@@ -489,7 +489,7 @@ class BaseDatabaseWrapper:
 
     def is_usable(self):
         """
-        Tests if the database connection is usable.
+        Test if the database connection is usable.
 
         This function may assume that self.connection is not None.
 
@@ -501,7 +501,7 @@ class BaseDatabaseWrapper:
 
     def close_if_unusable_or_obsolete(self):
         """
-        Closes the current connection if unrecoverable errors have occurred,
+        Close the current connection if unrecoverable errors have occurred,
         or if it outlived its maximum age.
         """
         if self.connection is not None:
@@ -528,10 +528,10 @@ class BaseDatabaseWrapper:
 
     def validate_thread_sharing(self):
         """
-        Validates that the connection isn't accessed by another thread than the
+        Validate that the connection isn't accessed by another thread than the
         one which originally created it, unless the connection was explicitly
         authorized to be shared between threads (via the `allow_thread_sharing`
-        property). Raises an exception if the validation fails.
+        property). Raise an exception if the validation fails.
         """
         if not (self.allow_thread_sharing or self._thread_ident == _thread.get_ident()):
             raise DatabaseError(
@@ -568,13 +568,13 @@ class BaseDatabaseWrapper:
 
     def make_debug_cursor(self, cursor):
         """
-        Creates a cursor that logs all queries in self.queries_log.
+        Create a cursor that logs all queries in self.queries_log.
         """
         return utils.CursorDebugWrapper(cursor, self)
 
     def make_cursor(self, cursor):
         """
-        Creates a cursor without debug logging.
+        Create a cursor without debug logging.
         """
         return utils.CursorWrapper(cursor, self)
 
@@ -585,7 +585,7 @@ class BaseDatabaseWrapper:
         if it opened one, closes it to avoid leaving a dangling connection.
         This is useful for operations outside of the request-response cycle.
 
-        Provides a cursor: with self.temporary_connection() as cursor: ...
+        Provide a cursor: with self.temporary_connection() as cursor: ...
         """
         must_close = self.connection is None
         cursor = self.cursor()
@@ -624,7 +624,7 @@ class BaseDatabaseWrapper:
 
     def schema_editor(self, *args, **kwargs):
         """
-        Returns a new instance of this backend's SchemaEditor.
+        Return a new instance of this backend's SchemaEditor.
         """
         if self.SchemaEditorClass is None:
             raise NotImplementedError(

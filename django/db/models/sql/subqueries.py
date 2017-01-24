@@ -82,7 +82,7 @@ class DeleteQuery(Query):
 
 class UpdateQuery(Query):
     """
-    Represents an "update" SQL query.
+    Represent an "update" SQL query.
     """
 
     compiler = 'SQLUpdateCompiler'
@@ -93,7 +93,7 @@ class UpdateQuery(Query):
 
     def _setup_query(self):
         """
-        Runs on initialization and after cloning. Any attributes that would
+        Run on initialization and after cloning. Any attributes that would
         normally be set in __init__ should go in here, instead, so that they
         are also set up after a clone() call.
         """
@@ -148,15 +148,15 @@ class UpdateQuery(Query):
 
     def add_related_update(self, model, field, value):
         """
-        Adds (name, value) to an update query for an ancestor model.
+        Add (name, value) to an update query for an ancestor model.
 
-        Updates are coalesced so that we only run one update query per ancestor.
+        Update are coalesced so that we only run one update query per ancestor.
         """
         self.related_updates.setdefault(model, []).append((field, None, value))
 
     def get_related_updates(self):
         """
-        Returns a list of query objects: one for each update required to an
+        Return a list of query objects: one for each update required to an
         ancestor model. Each query will have the same filtering conditions as
         the current query but will only update a single table.
         """
@@ -197,7 +197,7 @@ class InsertQuery(Query):
 
 class AggregateQuery(Query):
     """
-    An AggregateQuery takes another query as a parameter to the FROM
+    Take another query as a parameter to the FROM
     clause and only selects the elements in the provided list.
     """
 

@@ -82,7 +82,7 @@ def get_related_models_recursive(model):
 
 class ProjectState:
     """
-    Represents the entire project's overall state.
+    Represent the entire project's overall state.
     This is the item that is passed around - we do it here rather than at the
     app level so that cross-app FKs/etc. resolve properly.
     """
@@ -194,7 +194,7 @@ class ProjectState:
         self.apps.render_multiple(states_to_be_rendered)
 
     def clone(self):
-        "Returns an exact copy of this ProjectState"
+        "Return an exact copy of this ProjectState"
         new_state = ProjectState(
             models={k: v.clone() for k, v in self.models.items()},
             real_apps=self.real_apps,
@@ -219,7 +219,7 @@ class ProjectState:
 
     @classmethod
     def from_apps(cls, apps):
-        "Takes in an Apps and returns a ProjectState matching it"
+        "Take in an Apps and return a ProjectState matching it"
         app_models = {}
         for model in apps.get_models(include_swapped=True):
             model_state = ModelState.from_model(model)
@@ -236,7 +236,7 @@ class ProjectState:
 
 class AppConfigStub(AppConfig):
     """
-    Stubs a Django AppConfig. Only provides a label, and a dict of models.
+    Stub a Django AppConfig. Only provide a label, and a dict of models.
     """
     # Not used, but required by AppConfig.__init__
     path = ''
@@ -358,7 +358,7 @@ class StateApps(Apps):
 
 class ModelState:
     """
-    Represents a Django Model. We don't use the actual Model class
+    Represent a Django Model. We don't use the actual Model class
     as it's not designed to have its options changed - instead, we
     mutate this one and then render it into a Model as required.
 
@@ -546,7 +546,7 @@ class ModelState:
                 yield mgr_name, manager_class(*args, **kwargs)
 
     def clone(self):
-        "Returns an exact copy of this ModelState"
+        "Return an exact copy of this ModelState"
         return self.__class__(
             app_label=self.app_label,
             name=self.name,
@@ -557,7 +557,7 @@ class ModelState:
         )
 
     def render(self, apps):
-        "Creates a Model object from our current state into the given apps"
+        "Create a Model object from our current state into the given apps"
         # First, make a Meta object
         meta_contents = {'app_label': self.app_label, "apps": apps}
         meta_contents.update(self.options)

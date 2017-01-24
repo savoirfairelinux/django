@@ -8,7 +8,7 @@ from .exceptions import MigrationSchemaMissing
 
 class MigrationRecorder:
     """
-    Deals with storing migration records in the database.
+    Deal with storing migration records in the database.
 
     Because this table is actually itself used for dealing with model
     creation, it's the one thing we can't do normally via migrations.
@@ -41,7 +41,7 @@ class MigrationRecorder:
 
     def ensure_schema(self):
         """
-        Ensures the table exists and has the correct schema.
+        Ensure the table exists and has the correct schema.
         """
         # If the table's there, that's fine - we've never changed its schema
         # in the codebase.
@@ -56,27 +56,27 @@ class MigrationRecorder:
 
     def applied_migrations(self):
         """
-        Returns a set of (app, name) of applied migrations.
+        Return a set of (app, name) of applied migrations.
         """
         self.ensure_schema()
         return set(tuple(x) for x in self.migration_qs.values_list("app", "name"))
 
     def record_applied(self, app, name):
         """
-        Records that a migration was applied.
+        Record that a migration was applied.
         """
         self.ensure_schema()
         self.migration_qs.create(app=app, name=name)
 
     def record_unapplied(self, app, name):
         """
-        Records that a migration was unapplied.
+        Record that a migration was unapplied.
         """
         self.ensure_schema()
         self.migration_qs.filter(app=app, name=name).delete()
 
     def flush(self):
         """
-        Deletes all migration records. Useful if you're testing migrations.
+        Delete all migration records. Useful if you're testing migrations.
         """
         self.migration_qs.all().delete()

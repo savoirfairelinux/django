@@ -39,7 +39,7 @@ class Cast(Func):
 
 class Coalesce(Func):
     """
-    Chooses, from left to right, the first non-null expression and returns it.
+    Chooses, from left to right, the first non-null expression and return it.
     """
     function = 'COALESCE'
 
@@ -98,7 +98,7 @@ class ConcatPair(Func):
 
 class Concat(Func):
     """
-    Concatenates text fields together. Backends that result in an entire
+    Concatenate text fields together. Backends that result in an entire
     null expression when any arguments are null will wrap each argument in
     coalesce functions to ensure we always get a non-null result.
     """
@@ -122,7 +122,7 @@ class Concat(Func):
 
 class Greatest(Func):
     """
-    Chooses the maximum expression and returns it.
+    Choose the maximum expression and return it.
 
     If any expression is null the return value is database-specific:
     On Postgres, the maximum not-null expression is returned.
@@ -142,7 +142,7 @@ class Greatest(Func):
 
 class Least(Func):
     """
-    Chooses the minimum expression and returns it.
+    Choose the minimum expression and return it.
 
     If any expression is null the return value is database-specific:
     On Postgres, the minimum not-null expression is returned.
@@ -161,7 +161,7 @@ class Least(Func):
 
 
 class Length(Transform):
-    """Returns the number of characters in the expression"""
+    """Return the number of characters in the expression"""
     function = 'LENGTH'
     lookup_name = 'length'
 

@@ -424,7 +424,7 @@ class RelatedField(Field):
     @property
     def target_field(self):
         """
-        When filtering against this relation, returns the field on the remote
+        When filtering against this relation, return the field on the remote
         model against which the filtering should happen.
         """
         target_fields = self.get_path_info()[-1].target_fields
@@ -436,7 +436,7 @@ class RelatedField(Field):
 
 class ForeignObject(RelatedField):
     """
-    Abstraction of the ForeignKey relation, supports multi-column relations.
+    Abstraction of the ForeignKey relation, support multi-column relations.
     """
 
     # Field flags

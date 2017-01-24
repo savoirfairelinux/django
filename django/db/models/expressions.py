@@ -10,7 +10,7 @@ from django.utils.functional import cached_property
 
 class Combinable:
     """
-    Provides the ability to combine one or two objects with
+    Provide the ability to combine one or two objects with
     some connector. For example F('foo') + F('bar').
     """
 
@@ -190,7 +190,7 @@ class BaseExpression:
 
     def resolve_expression(self, query=None, allow_joins=True, reuse=None, summarize=False, for_save=False):
         """
-        Provides the chance to do any preprocessing or validation before being
+        Provide the chance to do any preprocessing or validation before being
         added to the query.
 
         Arguments:
@@ -224,7 +224,7 @@ class BaseExpression:
     @cached_property
     def output_field(self):
         """
-        Returns the output type of this expressions.
+        Return the output type of this expressions.
         """
         if self._output_field_or_none is None:
             raise FieldError("Cannot resolve expression type, unknown output_field")
@@ -233,7 +233,7 @@ class BaseExpression:
     @cached_property
     def _output_field_or_none(self):
         """
-        Returns the output field of this expression, or None if no output type
+        Return the output field of this expression, or None if no output type
         can be resolved. Note that the 'output_field' property will raise
         FieldError if no type can be resolved, but this attribute allows for
         None values.
@@ -244,7 +244,7 @@ class BaseExpression:
 
     def _resolve_output_field(self):
         """
-        Attempts to infer the output type of the expression. If the output
+        Attempt to infer the output type of the expression. If the output
         fields of all source fields match then we can simply infer the same
         type here. This isn't always correct, but it makes sense most of the
         time.
@@ -315,7 +315,7 @@ class BaseExpression:
 
     def get_source_fields(self):
         """
-        Returns the underlying field types used by this
+        Return the underlying field types used by this
         aggregate.
         """
         return [e._output_field_or_none for e in self.get_source_expressions()]

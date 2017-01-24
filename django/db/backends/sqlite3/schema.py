@@ -225,7 +225,7 @@ class DatabaseSchemaEditor(BaseDatabaseSchemaEditor):
 
     def add_field(self, model, field):
         """
-        Creates a field on a model.
+        Create a field on a model.
         Usually involves adding a column, but may involve adding a
         table instead (for M2M fields)
         """
@@ -236,7 +236,7 @@ class DatabaseSchemaEditor(BaseDatabaseSchemaEditor):
 
     def remove_field(self, model, field):
         """
-        Removes a field from a model. Usually involves deleting a column,
+        Remove a field from a model. Usually involves deleting a column,
         but for M2Ms may involve deleting a table.
         """
         # M2M fields are a special case
@@ -260,7 +260,7 @@ class DatabaseSchemaEditor(BaseDatabaseSchemaEditor):
 
     def _alter_many_to_many(self, model, old_field, new_field, strict):
         """
-        Alters M2Ms to repoint their to= endpoints.
+        Alter M2Ms to repoint their to= endpoints.
         """
         if old_field.remote_field.through._meta.db_table == new_field.remote_field.through._meta.db_table:
             # The field name didn't change, but some options did; we have to propagate this altering.

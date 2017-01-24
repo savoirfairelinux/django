@@ -221,7 +221,7 @@ class Query:
 
     def __str__(self):
         """
-        Returns the query as a string of SQL with the parameter values
+        Return the query as a string of SQL with the parameter values
         substituted in (use sql_with_params() to see the unsubstituted string).
 
         Parameter values won't necessarily be quoted correctly, since that is
@@ -232,7 +232,7 @@ class Query:
 
     def sql_with_params(self):
         """
-        Returns the query as an SQL string and the parameters that will be
+        Return the query as an SQL string and the parameters that will be
         substituted into the query.
         """
         return self.get_compiler(DEFAULT_DB_ALIAS).as_sql()
@@ -254,7 +254,7 @@ class Query:
 
     def get_meta(self):
         """
-        Returns the Options instance (the model._meta) from which to start
+        Return the Options instance (the model._meta) from which to start
         processing. Normally, this is self.model._meta, but it can be changed
         by subclasses.
         """
@@ -262,7 +262,7 @@ class Query:
 
     def clone(self, klass=None, memo=None, **kwargs):
         """
-        Creates a copy of the current instance. The 'kwargs' parameter can be
+        Create a copy of the current instance. The 'kwargs' parameter can be
         used by clients to update attributes after copying has taken place.
         """
         obj = Empty()
@@ -395,7 +395,7 @@ class Query:
 
     def get_aggregation(self, using, added_aggregate_names):
         """
-        Returns the dictionary with the values of the existing aggregations.
+        Return the dictionary with the values of the existing aggregations.
         """
         if not self.annotation_select:
             return {}
@@ -488,7 +488,7 @@ class Query:
 
     def get_count(self, using):
         """
-        Performs a COUNT() query using the current filter constraints.
+        Perform a COUNT() query using the current filter constraints.
         """
         obj = self.clone()
         obj.add_annotation(Count('*'), alias='__count', is_summary=True)
@@ -613,7 +613,7 @@ class Query:
 
     def deferred_to_data(self, target, callback):
         """
-        Converts the self.deferred_loading data structure to an alternate data
+        Convert the self.deferred_loading data structure to an alternate data
         structure, describing the field that *will* be loaded. This is used to
         compute the columns to select from the database and also by the
         QuerySet class to work out which fields are being initialized on each
@@ -699,7 +699,7 @@ class Query:
 
     def table_alias(self, table_name, create=False):
         """
-        Returns a table alias for the given table_name and whether this is a
+        Return a table alias for the given table_name and whether this is a
         new alias or not.
 
         If 'create' is true, a new alias is always created. Otherwise, the
@@ -733,7 +733,7 @@ class Query:
 
     def promote_joins(self, aliases):
         """
-        Promotes recursively the join type of given aliases and its children to
+        Promote recursively the join type of given aliases and its children to
         an outer join. If 'unconditional' is False, the join is only promoted if
         it is nullable or the parent join is an outer join.
 
@@ -795,7 +795,7 @@ class Query:
 
     def change_aliases(self, change_map):
         """
-        Changes the aliases in change_map (which maps old-alias -> new-alias),
+        Change the aliases in change_map (which maps old-alias -> new-alias),
         relabelling any references to them in select columns and the where
         clause.
         """
@@ -831,14 +831,14 @@ class Query:
 
     def bump_prefix(self, outer_query):
         """
-        Changes the alias prefix to the next letter in the alphabet in a way
+        Change the alias prefix to the next letter in the alphabet in a way
         that the outer query's aliases and this query's aliases will not
         conflict. Even tables that previously had no alias will get an alias
         after this call.
         """
         def prefix_gen():
             """
-            Generates a sequence of characters in alphabetical order:
+            Generate a sequence of characters in alphabetical order:
                 -> 'A', 'B', 'C', ...
 
             When the alphabet is finished, the sequence will continue with the
@@ -878,7 +878,7 @@ class Query:
 
     def get_initial_alias(self):
         """
-        Returns the first alias for this query, after increasing its reference
+        Return the first alias for this query, after increasing its reference
         count.
         """
         if self.tables:
@@ -890,7 +890,7 @@ class Query:
 
     def count_active_tables(self):
         """
-        Returns the number of tables in this query with a non-zero reference
+        Return the number of tables in this query with a non-zero reference
         count. Note that after execution, the reference counts are zeroed, so
         tables added in compiler will not be seen by this method.
         """
@@ -898,7 +898,7 @@ class Query:
 
     def join(self, join, reuse=None):
         """
-        Returns an alias for the join in 'connection', either reusing an
+        Return an alias for the join in 'connection', either reusing an
         existing alias for that join or creating a new one. 'connection' is a
         tuple (lhs, table, join_cols) where 'lhs' is either an existing
         table alias or a table name. 'join_cols' is a tuple of tuples containing
@@ -940,7 +940,7 @@ class Query:
 
     def join_parent_model(self, opts, model, alias, seen):
         """
-        Makes sure the given 'model' is joined in the query. If 'model' isn't
+        Make sure the given 'model' is joined in the query. If 'model' isn't
         a parent of 'opts' or if it is None this method is a no-op.
 
         The 'alias' is the root alias for starting the join, 'seen' is a dict
@@ -974,7 +974,7 @@ class Query:
 
     def add_annotation(self, annotation, alias, is_summary=False):
         """
-        Adds a single annotation expression to the Query
+        Add a single annotation expression to the Query
         """
         annotation = annotation.resolve_expression(self, allow_joins=True, reuse=None,
                                                    summarize=is_summary)
@@ -1051,8 +1051,8 @@ class Query:
 
     def check_query_object_type(self, value, opts, field):
         """
-        Checks whether the object passed while querying is of the correct type.
-        If not, it raises a ValueError specifying the wrong object.
+        Check whether the object passed while querying is of the correct type.
+        If not, raise a ValueError specifying the wrong object.
         """
         if hasattr(value, '_meta'):
             if not check_rel_lookup_compatibility(value._meta.model, opts, field):
@@ -1062,7 +1062,7 @@ class Query:
 
     def check_related_objects(self, field, value, opts):
         """
-        Checks the type of object passed to query relations.
+        Check the type of object passed to query relations.
         """
         if field.is_relation:
             # Check that the field and the queryset use the same model in a
@@ -1087,7 +1087,7 @@ class Query:
 
     def build_lookup(self, lookups, lhs, rhs):
         """
-        Tries to extract transforms and lookup from given lhs.
+        Try to extract transforms and lookup from given lhs.
 
         The lhs value is something that works like SQLExpression.
         The rhs value is what the lookup is going to compare against.
@@ -1114,7 +1114,7 @@ class Query:
 
     def try_transform(self, lhs, name, rest_of_lookups):
         """
-        Helper method for build_lookup. Tries to fetch and initialize
+        Helper method for build_lookup. Try to fetch and initialize
         a transform for name parameter from lhs.
         """
         transform_class = lhs.get_transform(name)
@@ -1129,7 +1129,7 @@ class Query:
     def build_filter(self, filter_expr, branch_negated=False, current_negated=False,
                      can_reuse=None, connector=AND, allow_joins=True, split_subq=True):
         """
-        Builds a WhereNode for a single filter clause, but doesn't add it
+        Build a WhereNode for a single filter clause, but doesn't add it
         to this Query. Query.add_q() will then add this filter to the where
         Node.
 
@@ -1140,7 +1140,7 @@ class Query:
         negated or not and this will be used to determine if IS NULL filtering
         is needed.
 
-        The difference between current_netageted and branch_negated is that
+        The difference between current_negated and branch_negated is that
         branch_negated is set on first negation, but current_negated is
         flipped for each negation.
 
@@ -1262,7 +1262,7 @@ class Query:
     def _add_q(self, q_object, used_aliases, branch_negated=False,
                current_negated=False, allow_joins=True, split_subq=True):
         """
-        Adds a Q-object to the current filter.
+        Add a Q-object to the current filter.
         """
         connector = q_object.connector
         current_negated = current_negated ^ q_object.negated
@@ -1290,7 +1290,7 @@ class Query:
 
     def names_to_path(self, names, opts, allow_many=True, fail_on_missing=False):
         """
-        Walks the list of names and turns them into PathInfo tuples. Note that
+        Walk the list of names and turns them into PathInfo tuples. Note that
         a single name in 'names' can generate multiple PathInfos (m2m for
         example).
 
@@ -1299,7 +1299,7 @@ class Query:
         If fail_on_missing is set to True, then a name that can't be resolved
         will generate a FieldError.
 
-        Returns a list of PathInfo tuples. In addition returns the final field
+        Return a list of PathInfo tuples. In addition returns the final field
         (the last used join field), and target (which is a field guaranteed to
         contain the same value as the final field). Finally, the method returns
         those names that weren't found (which are likely transforms and the
@@ -1390,7 +1390,7 @@ class Query:
         If 'allow_many' is False, then any reverse foreign key seen will
         generate a MultiJoin exception.
 
-        Returns the final field involved in the joins, the target field (used
+        Return the final field involved in the joins, the target field (used
         for any 'where' constraint), the final 'opts' value, the joins and the
         field path travelled to generate the joins.
 
@@ -1426,7 +1426,7 @@ class Query:
         is the full list of join aliases. The 'path' contain the PathInfos
         used to create the joins.
 
-        Returns the final target field and table alias and the new active
+        Return the final target field and table alias and the new active
         joins.
 
         We will always trim any direct join if we have the target column
@@ -1548,7 +1548,7 @@ class Query:
 
     def set_limits(self, low=None, high=None):
         """
-        Adjusts the limits on the rows retrieved. We use low/high to set these,
+        Adjust the limits on the rows retrieved. We use low/high to set these,
         as it makes it more Pythonic to read and write. When the SQL query is
         created, they are converted to the appropriate offset and limit values.
 
@@ -1572,13 +1572,13 @@ class Query:
 
     def clear_limits(self):
         """
-        Clears any existing limits.
+        Clear any existing limits.
         """
         self.low_mark, self.high_mark = 0, None
 
     def can_filter(self):
         """
-        Returns True if adding filters to this instance is still possible.
+        Return True if adding filters to this instance is still possible.
 
         Typically, this means no limits or offsets have been put on the results.
         """
@@ -1586,7 +1586,7 @@ class Query:
 
     def clear_select_clause(self):
         """
-        Removes all fields from SELECT clause.
+        Remove all fields from SELECT clause.
         """
         self.select = []
         self.default_cols = False
@@ -1596,7 +1596,7 @@ class Query:
 
     def clear_select_fields(self):
         """
-        Clears the list of fields to select (but not extra_select columns).
+        Clear the list of fields to select (but not extra_select columns).
         Some queryset types completely replace any existing list of select
         columns.
         """
@@ -1613,14 +1613,14 @@ class Query:
 
     def add_distinct_fields(self, *field_names):
         """
-        Adds and resolves the given fields to the query's "distinct on" clause.
+        Add and resolve the given fields to the query's "distinct on" clause.
         """
         self.distinct_fields = field_names
         self.distinct = True
 
     def add_fields(self, field_names, allow_m2m=True):
         """
-        Adds the given (model) fields to the select set. The field names are
+        Add the given (model) fields to the select set. The field names are
         added in the order specified.
         """
         alias = self.get_initial_alias()
@@ -1649,7 +1649,7 @@ class Query:
 
     def add_ordering(self, *ordering):
         """
-        Adds items from the 'ordering' sequence to the query's "order by"
+        Add items from the 'ordering' sequence to the query's "order by"
         clause. These items are either field names (not column names) --
         possibly with a direction prefix ('-' or '?') -- or OrderBy
         expressions.
@@ -1674,7 +1674,7 @@ class Query:
 
     def clear_ordering(self, force_empty):
         """
-        Removes any ordering settings. If 'force_empty' is True, there will be
+        Remove any ordering settings. If 'force_empty' is True, there will be
         no ordering in the resulting query (not even the model's default).
         """
         self.order_by = []
@@ -1684,7 +1684,7 @@ class Query:
 
     def set_group_by(self):
         """
-        Expands the GROUP BY clause required by the query.
+        Expand the GROUP BY clause required by the query.
 
         This will usually be the set of all non-aggregate fields in the
         return data. If the database backend supports grouping by the
@@ -1703,7 +1703,7 @@ class Query:
 
     def add_select_related(self, fields):
         """
-        Sets up the select_related data structure so that we only select
+        Set up the select_related data structure so that we only select
         certain related models (as opposed to all models, when
         self.select_related=True).
         """
@@ -1719,7 +1719,7 @@ class Query:
 
     def add_extra(self, select, select_params, where, params, tables, order_by):
         """
-        Adds data to the various extra_* attributes for user-created additions
+        Add data to the various extra_* attributes for user-created additions
         to the query.
         """
         if select:
@@ -1921,15 +1921,15 @@ class Query:
 
     def trim_start(self, names_with_path):
         """
-        Trims joins from the start of the join path. The candidates for trim
+        Trim joins from the start of the join path. The candidates for trim
         are the PathInfos in names_with_path structure that are m2m joins.
 
-        Also sets the select column so the start matches the join.
+        Also set the select column so the start matches the join.
 
         This method is meant to be used for generating the subquery joins &
         cols in split_exclude().
 
-        Returns a lookup usable for doing outerq.filter(lookup=self). Returns
+        Return a lookup usable for doing outerq.filter(lookup=self). Return
         also if the joins in the prefix contain a LEFT OUTER join.
         _"""
         all_paths = []
@@ -2018,7 +2018,7 @@ class Query:
 
 def get_order_dir(field, default='ASC'):
     """
-    Returns the field name and direction for an order specification. For
+    Return the field name and direction for an order specification. For
     example, '-foo' is returned as ('foo', 'DESC').
 
     The 'default' param is used to indicate which way no prefix (or a '+'

@@ -209,7 +209,7 @@ class DatabaseOperations(BaseDatabaseOperations):
 
     def max_name_length(self):
         """
-        Returns the maximum length of an identifier.
+        Return the maximum length of an identifier.
 
         Note that the maximum length of an identifier is 63 by default, but can
         be changed by recompiling PostgreSQL after editing the NAMEDATALEN

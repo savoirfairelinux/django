@@ -58,7 +58,7 @@ class DatabaseIntrospection(BaseDatabaseIntrospection):
 
     def get_table_list(self, cursor):
         """
-        Returns a list of table and view names in the current database.
+        Return a list of table and view names in the current database.
         """
         # Skip the sqlite_sequence system table used for autoincrement key
         # generation.
@@ -69,7 +69,7 @@ class DatabaseIntrospection(BaseDatabaseIntrospection):
         return [TableInfo(row[0], row[1][0]) for row in cursor.fetchall()]
 
     def get_table_description(self, cursor, table_name):
-        "Returns a description of the table, with the DB-API cursor.description interface."
+        "Return a description of the table, with the DB-API cursor.description interface."
         return [
             FieldInfo(
                 info['name'],
@@ -155,7 +155,7 @@ class DatabaseIntrospection(BaseDatabaseIntrospection):
 
     def get_key_columns(self, cursor, table_name):
         """
-        Returns a list of (column_name, referenced_table_name, referenced_column_name) for all
+        Return a list of (column_name, referenced_table_name, referenced_column_name) for all
         key columns in given table.
         """
         key_columns = []
@@ -237,7 +237,7 @@ class DatabaseIntrospection(BaseDatabaseIntrospection):
 
     def get_constraints(self, cursor, table_name):
         """
-        Retrieves any constraints or keys (unique, pk, fk, check, index) across one or more columns.
+        Retrieve any constraints or keys (unique, pk, fk, check, index) across one or more columns.
         """
         constraints = {}
         # Get the index info

@@ -1,6 +1,6 @@
 class BaseDatabaseClient:
     """
-    This class encapsulates all backend-specific methods for opening a
+    Encapsulate all backend-specific methods for opening a
     client shell.
     """
     # This should be a string representing the name of the executable

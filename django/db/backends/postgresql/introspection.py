@@ -53,7 +53,7 @@ class DatabaseIntrospection(BaseDatabaseIntrospection):
 
     def get_table_list(self, cursor):
         """
-        Returns a list of table and view names in the current database.
+        Return a list of table and view names in the current database.
         """
         cursor.execute("""
             SELECT c.relname, c.relkind
@@ -67,7 +67,7 @@ class DatabaseIntrospection(BaseDatabaseIntrospection):
                 if row[0] not in self.ignored_tables]
 
     def get_table_description(self, cursor, table_name):
-        "Returns a description of the table, with the DB-API cursor.description interface."
+        "Return a description of the table, with the DB-API cursor.description interface."
         # As cursor.description does not return reliably the nullable property,
         # we have to query the information_schema (#7783)
         cursor.execute("""
@@ -86,7 +86,7 @@ class DatabaseIntrospection(BaseDatabaseIntrospection):
 
     def get_relations(self, cursor, table_name):
         """
-        Returns a dictionary of {field_name: (field_name_other_table, other_table)}
+        Return a dictionary of {field_name: (field_name_other_table, other_table)}
         representing all relationships to the given table.
         """
         cursor.execute("""

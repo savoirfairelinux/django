@@ -100,7 +100,7 @@ class DummyNode(Node):
 
 class MigrationGraph:
     """
-    Represents the digraph of all migrations in a project.
+    Represent the digraph of all migrations in a project.
 
     Each migration is a node, and each dependency is an edge. There are
     no implicit dependencies between numbered migrations - the numbering is
@@ -168,7 +168,7 @@ class MigrationGraph:
 
     def remove_replaced_nodes(self, replacement, replaced):
         """
-        Removes each of the `replaced` nodes (when they exist). Any
+        Remove each of the `replaced` nodes (when they exist). Any
         dependencies that were referencing them are changed to reference the
         `replacement` node instead.
         """
@@ -317,7 +317,7 @@ class MigrationGraph:
 
     def root_nodes(self, app=None):
         """
-        Returns all root nodes - that is, nodes with no dependencies inside
+        Return all root nodes - that is, nodes with no dependencies inside
         their app. These are the starting point for an app.
         """
         roots = set()
@@ -328,7 +328,7 @@ class MigrationGraph:
 
     def leaf_nodes(self, app=None):
         """
-        Returns all leaf nodes - that is, nodes with no dependents in their app.
+        Return all leaf nodes - that is, nodes with no dependents in their app.
         These are the "most current" version of an app's schema.
         Having more than one per app is technically an error, but one that
         gets handled further up, in the interactive command - it's usually the
@@ -372,9 +372,9 @@ class MigrationGraph:
 
     def make_state(self, nodes=None, at_end=True, real_apps=None):
         """
-        Given a migration node or nodes, returns a complete ProjectState for it.
-        If at_end is False, returns the state before the migration has run.
-        If nodes is not provided, returns the overall most current project state.
+        Given a migration node or nodes, return a complete ProjectState for it.
+        If at_end is False, return the state before the migration has run.
+        If nodes is not provided, return the overall most current project state.
         """
         if nodes is None:
             nodes = list(self.leaf_nodes())

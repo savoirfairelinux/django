@@ -228,7 +228,7 @@ class CreateModel(ModelOperation):
 
 class DeleteModel(ModelOperation):
     """
-    Drops a model's table.
+    Drop a model's table.
     """
 
     def deconstruct(self):
@@ -260,7 +260,7 @@ class DeleteModel(ModelOperation):
 
 class RenameModel(ModelOperation):
     """
-    Renames a model.
+    Rename a model.
     """
 
     def __init__(self, old_name, new_name):
@@ -424,7 +424,7 @@ class RenameModel(ModelOperation):
 
 class AlterModelTable(ModelOperation):
     """
-    Renames a model's table
+    Rename a model's table
     """
 
     def __init__(self, name, table):
@@ -497,7 +497,7 @@ class FieldRelatedOptionOperation(ModelOptionOperation):
 
 class AlterUniqueTogether(FieldRelatedOptionOperation):
     """
-    Changes the value of unique_together to the target one.
+    Change the value of unique_together to the target one.
     Input value of unique_together must be a set of tuples.
     """
     option_name = "unique_together"
@@ -551,7 +551,7 @@ class AlterUniqueTogether(FieldRelatedOptionOperation):
 
 class AlterIndexTogether(FieldRelatedOptionOperation):
     """
-    Changes the value of index_together to the target one.
+    Change the value of index_together to the target one.
     Input value of index_together must be a set of tuples.
     """
     option_name = "index_together"
@@ -605,7 +605,7 @@ class AlterIndexTogether(FieldRelatedOptionOperation):
 
 class AlterOrderWithRespectTo(FieldRelatedOptionOperation):
     """
-    Represents a change with the order_with_respect_to option.
+    Represent a change with the order_with_respect_to option.
     """
 
     def __init__(self, name, order_with_respect_to):
@@ -664,7 +664,7 @@ class AlterOrderWithRespectTo(FieldRelatedOptionOperation):
 
 class AlterModelOptions(ModelOptionOperation):
     """
-    Sets new model options that don't directly affect the database schema
+    Set new model options that don't directly affect the database schema
     (like verbose_name, permissions, ordering). Python code in migrations
     may still need them.
     """
@@ -719,7 +719,7 @@ class AlterModelOptions(ModelOptionOperation):
 
 class AlterModelManagers(ModelOptionOperation):
     """
-    Alters the model's managers
+    Alter the model's managers
     """
 
     serialization_expand_args = ['managers']

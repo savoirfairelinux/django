@@ -161,7 +161,7 @@ class ConnectionHandler:
 
     def ensure_defaults(self, alias):
         """
-        Puts the defaults into the settings dictionary for a given connection
+        Put the defaults into the settings dictionary for a given connection
         where no settings is provided.
         """
         try:
@@ -182,7 +182,7 @@ class ConnectionHandler:
 
     def prepare_test_settings(self, alias):
         """
-        Makes sure the test settings are available in the 'TEST' sub-dictionary.
+        Make sure the test settings are available in the 'TEST' sub-dictionary.
         """
         try:
             conn = self.databases[alias]
