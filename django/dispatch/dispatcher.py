@@ -118,7 +118,7 @@ class Signal:
         Disconnect receiver from sender for signal.
 
         If weak references are used, disconnect need not be called. The receiver
-        will be remove from dispatch automatically.
+        will be removed from dispatch automatically.
 
         Arguments:
 

@@ -121,8 +121,8 @@ class HttpRequest:
 
     def get_signed_cookie(self, key, default=RAISE_ERROR, salt='', max_age=None):
         """
-        Attempts to return a signed cookie. If the signature fails or the
-        cookie has expired, raises an exception... unless you provide the
+        Attempt to return a signed cookie. If the signature fails or the
+        cookie has expired, raise an exception... unless you provide the
         default argument in which case that value will be returned instead.
         """
         try:
@@ -155,7 +155,7 @@ class HttpRequest:
 
     def build_absolute_uri(self, location=None):
         """
-        Builds an absolute URI from the location and the variables available in
+        Build an absolute URI from the location and the variables available in
         this request. If no ``location`` is specified, the absolute URI is
         built on ``request.get_full_path()``. Anyway, if the location is
         absolute, it is simply converted to an RFC 3987 compliant URI and
@@ -211,7 +211,7 @@ class HttpRequest:
     @encoding.setter
     def encoding(self, val):
         """
-        Sets the encoding used for GET/POST accesses. If the GET or POST
+        Set the encoding used for GET/POST accesses. If the GET or POST
         dictionary has already been created, it is removed and recreated on the
         next access (so that it is decoded correctly).
         """
@@ -239,7 +239,7 @@ class HttpRequest:
         self._upload_handlers = upload_handlers
 
     def parse_file_upload(self, META, post_data):
-        """Returns a tuple of (POST QueryDict, FILES MultiValueDict)."""
+        """Return a tuple of (POST QueryDict, FILES MultiValueDict)."""
         self.upload_handlers = ImmutableList(
             self.upload_handlers,
             warning="You cannot alter upload handlers after the upload has been processed."
@@ -474,7 +474,7 @@ class QueryDict(MultiValueDict):
 
     def urlencode(self, safe=None):
         """
-        Returns an encoded string of all query string arguments.
+        Return an encoded string of all query string arguments.
 
         :arg safe: Used to specify characters which do not require quoting, for
             example::

@@ -366,7 +366,7 @@ class LazyStream:
         """
         Used when the exact number of bytes to read is unimportant.
 
-        This procedure just returns whatever is chunk is conveniently returned
+        Return whatever is chunk is conveniently returned
         from the iterator instead. Useful to avoid unnecessary bookkeeping if
         performance is an issue.
         """
@@ -383,7 +383,7 @@ class LazyStream:
         """
         Used to invalidate/disable this lazy stream.
 
-        Replaces the producer with an empty list. Any leftover bytes that have
+        Replace the producer with an empty list. Any leftover bytes that have
         already been read will still be reported upon read() and/or next().
         """
         self._producer = []
@@ -393,7 +393,7 @@ class LazyStream:
 
     def unget(self, bytes):
         """
-        Places bytes back onto the front of the lazy stream.
+        Place bytes back onto the front of the lazy stream.
 
         Future calls to read() will return those bytes first. The
         stream position and thus tell() will be rewound.
@@ -406,7 +406,7 @@ class LazyStream:
 
     def _update_unget_history(self, num_bytes):
         """
-        Updates the unget history as a sanity check to see if we've pushed
+        Update the unget history as a sanity check to see if we've pushed
         back the same number of bytes in one chunk. If we keep ungetting the
         same number of bytes many times (here, 50), we're mostly likely in an
         infinite loop of some sort. This is usually caused by a
@@ -541,7 +541,7 @@ class BoundaryIter:
 
     def _find_boundary(self, data, eof=False):
         """
-        Finds a multipart boundary in data.
+        Find a multipart boundary in data.
 
         Should no boundary exist in the data None is returned instead. Otherwise
         a tuple containing the indices of the following are returned:
@@ -578,7 +578,7 @@ def exhaust(stream_or_iterable):
 
 def parse_boundary_stream(stream, max_header_size):
     """
-    Parses one and exactly one stream that encapsulates a boundary.
+    Parse one and exactly one stream that encapsulates a boundary.
     """
     # Stream at beginning of header, look for end of header
     # and parse it if found. The header must fit within one

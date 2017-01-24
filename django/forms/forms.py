@@ -25,7 +25,7 @@ __all__ = ('BaseForm', 'Form')
 
 class DeclarativeFieldsMetaclass(MediaDefiningClass):
     """
-    Metaclass that collects Fields declared on the base classes.
+    Collect Fields declared on the base classes.
     """
     def __new__(mcs, name, bases, attrs):
         # Collect fields from current class.
@@ -113,7 +113,7 @@ class BaseForm:
 
     def order_fields(self, field_order):
         """
-        Rearranges the fields according to field_order.
+        Rearrange the fields according to field_order.
 
         field_order is a list of field names specifying the order. Fields not
         included in the list are appended in the default order for backward
@@ -170,21 +170,21 @@ class BaseForm:
 
     @property
     def errors(self):
-        "Returns an ErrorDict for the data provided for the form"
+        "Return an ErrorDict for the data provided for the form"
         if self._errors is None:
             self.full_clean()
         return self._errors
 
     def is_valid(self):
         """
-        Returns True if the form has no errors. Otherwise, False. If errors are
+        Return True if the form has no errors. Otherwise, False. If errors are
         being ignored, returns False.
         """
         return self.is_bound and not self.errors
 
     def add_prefix(self, field_name):
         """
-        Returns the field name with a prefix appended, if this Form has a
+        Return the field name with a prefix appended, if this Form has a
         prefix set.
 
         Subclasses may wish to override.
@@ -276,7 +276,7 @@ class BaseForm:
         return mark_safe('\n'.join(output))
 
     def as_table(self):
-        "Returns this form rendered as HTML <tr>s -- excluding the <table></table>."
+        "Return this form rendered as HTML <tr>s -- excluding the <table></table>."
         return self._html_output(
             normal_row='<tr%(html_class_attr)s><th>%(label)s</th><td>%(errors)s%(field)s%(help_text)s</td></tr>',
             error_row='<tr><td colspan="2">%s</td></tr>',
@@ -285,7 +285,7 @@ class BaseForm:
             errors_on_separate_row=False)
 
     def as_ul(self):
-        "Returns this form rendered as HTML <li>s -- excluding the <ul></ul>."
+        "Return this form rendered as HTML <li>s -- excluding the <ul></ul>."
         return self._html_output(
             normal_row='<li%(html_class_attr)s>%(errors)s%(label)s %(field)s%(help_text)s</li>',
             error_row='<li>%s</li>',
@@ -294,7 +294,7 @@ class BaseForm:
             errors_on_separate_row=False)
 
     def as_p(self):
-        "Returns this form rendered as HTML <p>s."
+        "Return this form rendered as HTML <p>s."
         return self._html_output(
             normal_row='<p%(html_class_attr)s>%(label)s %(field)s%(help_text)s</p>',
             error_row='%s',
@@ -304,8 +304,8 @@ class BaseForm:
 
     def non_field_errors(self):
         """
-        Returns an ErrorList of errors that aren't associated with a particular
-        field -- i.e., from Form.clean(). Returns an empty ErrorList if there
+        Return an ErrorList of errors that aren't associated with a particular
+        field -- i.e., from Form.clean(). Return an empty ErrorList if there
         are none.
         """
         return self.errors.get(NON_FIELD_ERRORS, self.error_class(error_class='nonfield'))
@@ -369,7 +369,7 @@ class BaseForm:
 
     def full_clean(self):
         """
-        Cleans all of self.data and populates self._errors and
+        Clean all of self.data and populates self._errors and
         self.cleaned_data.
         """
         self._errors = ErrorDict()
@@ -434,7 +434,7 @@ class BaseForm:
 
     def has_changed(self):
         """
-        Returns True if data differs from initial.
+        Return True if data differs from initial.
         """
         return bool(self.changed_data)
 
@@ -474,7 +474,7 @@ class BaseForm:
 
     def is_multipart(self):
         """
-        Returns True if the form needs to be multipart-encoded, i.e. it has
+        Return True if the form needs to be multipart-encoded, i.e. it has
         FileInput. Otherwise, False.
         """
         for field in self.fields.values():
@@ -484,14 +484,14 @@ class BaseForm:
 
     def hidden_fields(self):
         """
-        Returns a list of all the BoundField objects that are hidden fields.
+        Return a list of all the BoundField objects that are hidden fields.
         Useful for manual form layout in templates.
         """
         return [field for field in self if field.is_hidden]
 
     def visible_fields(self):
         """
-        Returns a list of BoundField objects that aren't hidden fields.
+        Return a list of BoundField objects that aren't hidden fields.
         The opposite of the hidden_fields() method.
         """
         return [field for field in self if not field.is_hidden]

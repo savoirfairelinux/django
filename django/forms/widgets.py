@@ -218,8 +218,8 @@ class Widget(metaclass=MediaDefiningClass):
 
     def value_from_datadict(self, data, files, name):
         """
-        Given a dictionary of data and this widget's name, returns the value
-        of this widget. Returns None if it's not provided.
+        Given a dictionary of data and this widget's name, return the value
+        of this widget. Return None if it's not provided.
         """
         return data.get(name)
 
@@ -228,8 +228,8 @@ class Widget(metaclass=MediaDefiningClass):
 
     def id_for_label(self, id_):
         """
-        Returns the HTML ID attribute of this Widget for use by a <label>,
-        given the ID of the field. Returns None if no ID is available.
+        Return the HTML ID attribute of this Widget for use by a <label>,
+        given the ID of the field. Return None if no ID is available.
 
         This hook is necessary because some widgets have multiple HTML
         elements and, thus, multiple IDs. In that case, this method should
@@ -302,7 +302,7 @@ class HiddenInput(Input):
 
 class MultipleHiddenInput(HiddenInput):
     """
-    A widget that handles <input type="hidden"> for fields that have a list
+    Handle <input type="hidden"> for fields that have a list
     of values.
     """
     template_name = 'django/forms/widgets/multiple_hidden.html'
@@ -820,7 +820,7 @@ class MultiWidget(Widget):
 
     def decompress(self, value):
         """
-        Returns a list of decompressed values for the given compressed value.
+        Return a list of decompressed values for the given compressed value.
         The given value can be assumed to be valid, but not necessarily
         non-empty.
         """
@@ -846,7 +846,7 @@ class MultiWidget(Widget):
 
 class SplitDateTimeWidget(MultiWidget):
     """
-    A Widget that splits datetime input into two <input type="text"> boxes.
+    Split datetime input into two <input type="text"> boxes.
     """
     supports_microseconds = False
     template_name = 'django/forms/widgets/splitdatetime.html'
@@ -867,7 +867,7 @@ class SplitDateTimeWidget(MultiWidget):
 
 class SplitHiddenDateTimeWidget(SplitDateTimeWidget):
     """
-    A Widget that splits datetime input into two <input type="hidden"> inputs.
+    Split datetime input into two <input type="hidden"> inputs.
     """
     template_name = 'django/forms/widgets/splithiddendatetime.html'
 
@@ -879,7 +879,7 @@ class SplitHiddenDateTimeWidget(SplitDateTimeWidget):
 
 class SelectDateWidget(Widget):
     """
-    A Widget that splits date input into three <select> boxes.
+    Split date input into three <select> boxes.
 
     This also serves as an example of a Widget that has more than one HTML
     element and hence implements value_from_datadict.
