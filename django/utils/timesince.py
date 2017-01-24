@@ -17,7 +17,7 @@ TIMESINCE_CHUNKS = (
 
 def timesince(d, now=None, reversed=False):
     """
-    Takes two datetime objects and returns the time between d and now
+    Take two datetime objects and returns the time between d and now
     as a nicely formatted string, e.g. "10 minutes".  If d occurs after now,
     then "0 minutes" is returned.
 

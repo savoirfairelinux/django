@@ -60,7 +60,7 @@ def reset_format_cache():
 
 def iter_format_modules(lang, format_module_path=None):
     """
-    Does the heavy lifting of finding format modules.
+    Do the heavy lifting of finding format modules.
     """
     if not check_for_language(lang):
         return
@@ -89,7 +89,7 @@ def iter_format_modules(lang, format_module_path=None):
 
 def get_format_modules(lang=None, reverse=False):
     """
-    Returns a list of the format modules found
+    Return a list of the format modules found.
     """
     if lang is None:
         lang = get_language()
@@ -151,7 +151,7 @@ get_format_lazy = lazy(get_format, str, list, tuple)
 
 def date_format(value, format=None, use_l10n=None):
     """
-    Formats a datetime.date or datetime.datetime object using a
+    Format a datetime.date or datetime.datetime object using a
     localizable format
 
     If use_l10n is provided and is not None, that will force the value to
@@ -162,7 +162,7 @@ def date_format(value, format=None, use_l10n=None):
 
 def time_format(value, format=None, use_l10n=None):
     """
-    Formats a datetime.time object using a localizable format
+    Format a datetime.time object using a localizable format
 
     If use_l10n is provided and is not None, that will force the value to
     be localized (or not), overriding the value of settings.USE_L10N.
@@ -172,7 +172,7 @@ def time_format(value, format=None, use_l10n=None):
 
 def number_format(value, decimal_pos=None, use_l10n=None, force_grouping=False):
     """
-    Formats a numeric value using localization settings
+    Format a numeric value using localization settings
 
     If use_l10n is provided and is not None, that will force the value to
     be localized (or not), overriding the value of settings.USE_L10N.
@@ -193,7 +193,7 @@ def number_format(value, decimal_pos=None, use_l10n=None, force_grouping=False):
 
 def localize(value, use_l10n=None):
     """
-    Checks if value is a localizable type (date, number...) and returns it
+    Check if value is a localizable type (date, number...) and return it
     formatted as a string using current locale format.
 
     If use_l10n is provided and is not None, that will force the value to
@@ -216,7 +216,7 @@ def localize(value, use_l10n=None):
 
 def localize_input(value, default=None):
     """
-    Checks if an input value is a localizable type and returns it
+    Check if an input value is a localizable type and return it
     formatted with the appropriate formatting string of the current locale.
     """
     if isinstance(value, str):  # Handle strings first for performance reasons.
@@ -241,7 +241,7 @@ def localize_input(value, default=None):
 
 def sanitize_separators(value):
     """
-    Sanitizes a value according to the current decimal and
+    Sanitize a value according to the current decimal and
     thousand separator setting. Used with form field input.
     """
     if settings.USE_L10N and isinstance(value, str):

@@ -20,7 +20,7 @@ class Node:
 
     def __init__(self, children=None, connector=None, negated=False):
         """
-        Constructs a new Node. If no connector is given, the default will be
+        Construct a new Node. If no connector is given, the default will be
         used.
         """
         self.children = children[:] if children else []
@@ -73,13 +73,13 @@ class Node:
 
     def __contains__(self, other):
         """
-        Returns True is 'other' is a direct child of this instance.
+        Return True is 'other' is a direct child of this instance.
         """
         return other in self.children
 
     def add(self, data, conn_type, squash=True):
         """
-        Combines this tree and the data represented by data using the
+        Combine this tree and the data represented by data using the
         connector conn_type. The combine is done by squashing the node other
         away if possible.
 

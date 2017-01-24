@@ -212,7 +212,7 @@ def next_char(input_iter):
     its class (e.g. \w -> "x"). If the escaped character is one that is
     skipped, it is not returned (the next character is returned instead).
 
-    Yields the next character, along with a boolean indicating whether it is a
+    Yield the next character, along with a boolean indicating whether it is a
     raw (unescaped) character or not.
     """
     for ch in input_iter:
@@ -286,7 +286,7 @@ def get_quantifier(ch, input_iter):
 
 def contains(source, inst):
     """
-    Returns True if the "source" contains an instance of "inst". False,
+    Return True if the "source" contains an instance of "inst". False,
     otherwise.
     """
     if isinstance(source, inst):
@@ -300,8 +300,8 @@ def contains(source, inst):
 
 def flatten_result(source):
     """
-    Turns the given source sequence into a list of reg-exp possibilities and
-    their arguments. Returns a list of strings and a list of argument lists.
+    Turn the given source sequence into a list of reg-exp possibilities and
+    their arguments. Return a list of strings and a list of argument lists.
     Each of the two lists will be of the same length.
     """
     if source is None:

@@ -32,7 +32,7 @@ class warn_about_renamed_method:
 
 class RenameMethodsBase(type):
     """
-    Handles the deprecation paths when renaming a method.
+    Handle the deprecation paths when renaming a method.
 
     It does the following:
         1) Define the new method if missing and complain about it.

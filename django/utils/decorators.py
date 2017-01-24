@@ -14,7 +14,7 @@ class classonlymethod(classmethod):
 
 def method_decorator(decorator, name=''):
     """
-    Converts a function decorator into a method decorator
+    Convert a function decorator into a method decorator
     """
     # 'obj' can be a class or a function. If 'obj' is a function at the time it
     # is passed to _dec,  it will eventually be a method of the class it is

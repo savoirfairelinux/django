@@ -57,7 +57,7 @@ utc = pytz.utc
 
 def get_fixed_timezone(offset):
     """
-    Returns a tzinfo instance with a fixed offset from UTC.
+    Return a tzinfo instance with a fixed offset from UTC.
     """
     if isinstance(offset, timedelta):
         offset = offset.seconds // 60
@@ -72,7 +72,7 @@ def get_fixed_timezone(offset):
 @functools.lru_cache()
 def get_default_timezone():
     """
-    Returns the default time zone as a tzinfo instance.
+    Return the default time zone as a tzinfo instance.
 
     This is the time zone defined by settings.TIME_ZONE.
     """
@@ -82,7 +82,7 @@ def get_default_timezone():
 # This function exists for consistency with get_current_timezone_name
 def get_default_timezone_name():
     """
-    Returns the name of the default time zone.
+    Return the name of the default time zone.
     """
     return _get_timezone_name(get_default_timezone())
 
@@ -92,21 +92,21 @@ _active = local()
 
 def get_current_timezone():
     """
-    Returns the currently active time zone as a tzinfo instance.
+    Return the currently active time zone as a tzinfo instance.
     """
     return getattr(_active, "value", get_default_timezone())
 
 
 def get_current_timezone_name():
     """
-    Returns the name of the currently active time zone.
+    Return the name of the currently active time zone.
     """
     return _get_timezone_name(get_current_timezone())
 
 
 def _get_timezone_name(timezone):
     """
-    Returns the name of ``timezone``.
+    Return the name of ``timezone``.
     """
     try:
         # for pytz timezones
@@ -123,7 +123,7 @@ def _get_timezone_name(timezone):
 
 def activate(timezone):
     """
-    Sets the time zone for the current thread.
+    Set the time zone for the current thread.
 
     The ``timezone`` argument must be an instance of a tzinfo subclass or a
     time zone name.
@@ -138,7 +138,7 @@ def activate(timezone):
 
 def deactivate():
     """
-    Unsets the time zone for the current thread.
+    Unset the time zone for the current thread.
 
     Django will then use the time zone defined by settings.TIME_ZONE.
     """
@@ -179,7 +179,7 @@ class override(ContextDecorator):
 
 def template_localtime(value, use_tz=None):
     """
-    Checks if value is a datetime and converts it to local time if necessary.
+    Check if value is a datetime and converts it to local time if necessary.
 
     If use_tz is provided and is not None, that will force the value to
     be converted (or not), overriding the value of settings.USE_TZ.
@@ -199,7 +199,7 @@ def template_localtime(value, use_tz=None):
 
 def localtime(value=None, timezone=None):
     """
-    Converts an aware datetime.datetime to local time.
+    Convert an aware datetime.datetime to local time.
 
     Only aware datetimes are allowed. When value is omitted, it defaults to
     now().
@@ -236,7 +236,7 @@ def localdate(value=None, timezone=None):
 
 def now():
     """
-    Returns an aware or naive datetime.datetime, depending on settings.USE_TZ.
+    Return an aware or naive datetime.datetime, depending on settings.USE_TZ.
     """
     if settings.USE_TZ:
         # timeit shows that datetime.now(tz=utc) is 24% slower
@@ -250,7 +250,7 @@ def now():
 
 def is_aware(value):
     """
-    Determines if a given datetime.datetime is aware.
+    Determine if a given datetime.datetime is aware.
 
     The concept is defined in Python's docs:
     http://docs.python.org/library/datetime.html#datetime.tzinfo
@@ -263,7 +263,7 @@ def is_aware(value):
 
 def is_naive(value):
     """
-    Determines if a given datetime.datetime is naive.
+    Determine if a given datetime.datetime is naive.
 
     The concept is defined in Python's docs:
     http://docs.python.org/library/datetime.html#datetime.tzinfo
@@ -276,7 +276,7 @@ def is_naive(value):
 
 def make_aware(value, timezone=None, is_dst=None):
     """
-    Makes a naive datetime.datetime in a given time zone aware.
+    Make a naive datetime.datetime in a given time zone aware.
     """
     if timezone is None:
         timezone = get_current_timezone()
@@ -294,7 +294,7 @@ def make_aware(value, timezone=None, is_dst=None):
 
 def make_naive(value, timezone=None):
     """
-    Makes an aware datetime.datetime naive in a given time zone.
+    Make an aware datetime.datetime naive in a given time zone.
     """
     if timezone is None:
         timezone = get_current_timezone()

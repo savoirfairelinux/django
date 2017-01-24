@@ -85,7 +85,7 @@ def force_text(s, encoding='utf-8', strings_only=False, errors='strict'):
 
 def smart_bytes(s, encoding='utf-8', strings_only=False, errors='strict'):
     """
-    Returns a bytestring version of 's', encoded as specified in 'encoding'.
+    Return a bytestring version of 's', encoded as specified in 'encoding'.
 
     If strings_only is True, don't convert (some) non-string-like objects.
     """
@@ -155,6 +155,7 @@ def iri_to_uri(iri):
     Take an IRI (string or UTF-8 bytes, e.g. '/I ♥ Django/' or
     b'/I \xe2\x99\xa5 Django/') and return a string containing the encoded
     result with ASCII chars only (e.g. '/I%20%E2%99%A5%20Django/').
+
     """
     # The list of safe characters here is constructed from the "reserved" and
     # "unreserved" characters specified in sections 2.2 and 2.3 of RFC 3986:
@@ -177,12 +178,12 @@ def iri_to_uri(iri):
 
 def uri_to_iri(uri):
     """
-    Converts a Uniform Resource Identifier(URI) into an Internationalized
+    Convert a Uniform Resource Identifier(URI) into an Internationalized
     Resource Identifier(IRI).
 
     This is the algorithm from section 3.2 of RFC 3987.
 
-    Takes an URI in ASCII bytes (e.g. '/I%20%E2%99%A5%20Django/') and returns
+    Take an URI in ASCII bytes (e.g. '/I%20%E2%99%A5%20Django/') and return
     a string containing the encoded result (e.g. '/I \xe2\x99\xa5 Django/').
     """
     if uri is None:

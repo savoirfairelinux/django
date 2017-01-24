@@ -81,7 +81,7 @@ _cached_filenames = []
 
 def gen_filenames(only_new=False):
     """
-    Returns a list of filenames referenced in sys.modules and translation
+    Return a list of filenames referenced in sys.modules and translation
     files.
     """
     # N.B. ``list(...)`` is needed, because this runs in parallel with
@@ -152,7 +152,7 @@ def reset_translations():
 
 def inotify_code_changed():
     """
-    Checks for changed code using inotify. After being called
+    Check for changed code using inotify. After being called
     it blocks until a change event has been fired.
     """
     class EventHandler(pyinotify.ProcessEvent):

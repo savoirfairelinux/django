@@ -24,8 +24,8 @@ def npath(path):
 
 def safe_join(base, *paths):
     """
-    Joins one or more path components to the base path component intelligently.
-    Returns a normalized, absolute version of the final path.
+    Join one or more path components to the base path component intelligently.
+    Return a normalized, absolute version of the final path.
 
     The final path must be located inside of the base path component (otherwise
     a ValueError is raised).
