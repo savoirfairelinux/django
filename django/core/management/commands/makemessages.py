@@ -60,7 +60,7 @@ class TranslatableFile:
 
 class BuildFile:
     """
-    Represents the state of a translatable file during the build process.
+    Represent the state of a translatable file during the build process.
     """
     def __init__(self, command, domain, translatable):
         self.command = command
@@ -591,10 +591,10 @@ class Command(BaseCommand):
 
     def write_po_file(self, potfile, locale):
         """
-        Creates or updates the PO file for self.domain and :param locale:.
-        Uses contents of the existing :param potfile:.
+        Create or update the PO file for self.domain and :param locale:.
+        Use contents of the existing :param potfile:.
 
-        Uses msgmerge, and msgattrib GNU gettext utilities.
+        Use msgmerge, and msgattrib GNU gettext utilities.
         """
         basedir = os.path.join(os.path.dirname(potfile), locale, 'LC_MESSAGES')
         if not os.path.isdir(basedir):
@@ -633,7 +633,7 @@ class Command(BaseCommand):
 
     def copy_plural_forms(self, msgs, locale):
         """
-        Copies plural forms header contents from a Django catalog of locale to
+        Copy plural forms header contents from a Django catalog of locale to
         the msgs string, inserting it at the right place. msgs should be the
         contents of a newly created .po file.
         """

@@ -24,7 +24,7 @@ logger = logging.getLogger('django.server')
 
 def get_internal_wsgi_application():
     """
-    Loads and returns the WSGI application as configured by the user in
+    Load and return the WSGI application as configured by the user in
     ``settings.WSGI_APPLICATION``. With the default ``startproject`` layout,
     this will be the ``application`` object in ``projectname/wsgi.py``.
 

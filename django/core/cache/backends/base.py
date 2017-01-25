@@ -26,7 +26,7 @@ def default_key_func(key, key_prefix, version):
     """
     Default function to generate keys.
 
-    Constructs the key used by all other methods. By default it prepends
+    Construct the key used by all other methods. By default it prepends
     the `key_prefix'. KEY_FUNCTION can be used to specify an alternate
     function with custom key making behavior.
     """
@@ -37,7 +37,7 @@ def get_key_func(key_func):
     """
     Function to decide which key function to use.
 
-    Defaults to ``default_key_func``.
+    Default to ``default_key_func``.
     """
     if key_func is not None:
         if callable(key_func):
@@ -76,7 +76,7 @@ class BaseCache:
 
     def get_backend_timeout(self, timeout=DEFAULT_TIMEOUT):
         """
-        Returns the timeout value usable by this backend based upon the provided
+        Return the timeout value usable by this backend based upon the provided
         timeout.
         """
         if timeout == DEFAULT_TIMEOUT:
@@ -87,7 +87,7 @@ class BaseCache:
         return None if timeout is None else time.time() + timeout
 
     def make_key(self, key, version=None):
-        """Constructs the key used by all other methods. By default it
+        """Construct the key used by all other methods. By default it
         uses the key_func to generate a key (which, by default,
         prepends the `key_prefix' and 'version'). A different key
         function can be provided at the time of cache construction;
@@ -106,7 +106,7 @@ class BaseCache:
         timeout is given, that timeout will be used for the key; otherwise
         the default cache timeout will be used.
 
-        Returns True if the value was stored, False otherwise.
+        Return True if the value was stored, False otherwise.
         """
         raise NotImplementedError('subclasses of BaseCache must provide an add() method')
 
@@ -135,7 +135,7 @@ class BaseCache:
         Fetch a bunch of keys from the cache. For certain backends (memcached,
         pgsql) this can be *much* faster when fetching multiple values.
 
-        Returns a dict mapping each key in keys to its value. If the given
+        Return a dict mapping each key in keys to its value. If the given
         key is missing, it will be missing from the response dict.
         """
         d = {}
@@ -191,7 +191,7 @@ class BaseCache:
 
     def __contains__(self, key):
         """
-        Returns True if the key is in the cache and has not expired.
+        Return True if the key is in the cache and has not expired.
         """
         # This is a separate method, rather than just a copy of has_key(),
         # so that it always has the same functionality as has_key(), even
@@ -243,7 +243,7 @@ class BaseCache:
                 break
 
     def incr_version(self, key, delta=1, version=None):
-        """Adds delta to the cache version for the supplied key. Returns the
+        """Add delta to the cache version for the supplied key. Return the
         new version.
         """
         if version is None:
@@ -258,7 +258,7 @@ class BaseCache:
         return version + delta
 
     def decr_version(self, key, delta=1, version=None):
-        """Subtracts delta from the cache version for the supplied key. Returns
+        """Subtract delta from the cache version for the supplied key. Return
         the new version.
         """
         return self.incr_version(key, -delta, version)

@@ -42,7 +42,7 @@ def load_command_class(app_name, name):
 @functools.lru_cache(maxsize=None)
 def get_commands():
     """
-    Returns a dictionary mapping command names to their callback applications.
+    Return a dictionary mapping command names to their callback applications.
 
     This works by looking for a management.commands package in django.core, and
     in each installed application -- if a commands package exists, all commands
@@ -76,7 +76,7 @@ def get_commands():
 
 def call_command(command_name, *args, **options):
     """
-    Calls the given command, with the given options and args/kwargs.
+    Call the given command, with the given options and args/kwargs.
 
     This is the primary API you should use for calling specific commands.
 
@@ -130,7 +130,7 @@ def call_command(command_name, *args, **options):
 
 class ManagementUtility:
     """
-    Encapsulates the logic of the django-admin and manage.py utilities.
+    Encapsulate the logic of the django-admin and manage.py utilities.
     """
     def __init__(self, argv=None):
         self.argv = argv or sys.argv[:]
@@ -174,7 +174,7 @@ class ManagementUtility:
 
     def fetch_command(self, subcommand):
         """
-        Tries to fetch the given subcommand, printing a message with the
+        Try to fetch the given subcommand, printing a message with the
         appropriate command called from the command line (usually
         "django-admin" or "manage.py") if it can't be found.
         """
@@ -355,7 +355,7 @@ class ManagementUtility:
 
 def execute_from_command_line(argv=None):
     """
-    A simple method that runs a ManagementUtility.
+    Run a ManagementUtility.
     """
     utility = ManagementUtility(argv)
     utility.execute()

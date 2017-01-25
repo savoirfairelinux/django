@@ -4,7 +4,7 @@ from django.db import models
 
 def sql_flush(style, connection, only_django=False, reset_sequences=True, allow_cascade=False):
     """
-    Returns a list of the SQL statements used to flush the database.
+    Return a list of the SQL statements used to flush the database.
 
     If only_django is True, then only table names that have associated Django
     models and are in INSTALLED_APPS will be included.

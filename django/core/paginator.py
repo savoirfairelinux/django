@@ -34,7 +34,7 @@ class Paginator:
 
     def validate_number(self, number):
         """
-        Validates the given 1-based page number.
+        Validate the given 1-based page number.
         """
         try:
             number = int(number)
@@ -51,7 +51,7 @@ class Paginator:
 
     def page(self, number):
         """
-        Returns a Page object for the given 1-based page number.
+        Return a Page object for the given 1-based page number.
         """
         number = self.validate_number(number)
         bottom = (number - 1) * self.per_page
@@ -62,7 +62,7 @@ class Paginator:
 
     def _get_page(self, *args, **kwargs):
         """
-        Returns an instance of a single page.
+        Return an instance of a single page.
 
         This hook can be used by subclasses to use an alternative to the
         standard :cls:`Page` object.
@@ -72,7 +72,7 @@ class Paginator:
     @cached_property
     def count(self):
         """
-        Returns the total number of objects, across all pages.
+        Return the total number of objects, across all pages.
         """
         try:
             return self.object_list.count()
@@ -85,7 +85,7 @@ class Paginator:
     @cached_property
     def num_pages(self):
         """
-        Returns the total number of pages.
+        Return the total number of pages.
         """
         if self.count == 0 and not self.allow_empty_first_page:
             return 0
@@ -95,7 +95,7 @@ class Paginator:
     @property
     def page_range(self):
         """
-        Returns a 1-based range of pages for iterating through within
+        Return a 1-based range of pages for iterating through within
         a template for loop.
         """
         return range(1, self.num_pages + 1)
@@ -154,7 +154,7 @@ class Page(collections.Sequence):
 
     def start_index(self):
         """
-        Returns the 1-based index of the first object on this page,
+        Return the 1-based index of the first object on this page,
         relative to total objects in the paginator.
         """
         # Special case, return zero if no items.
@@ -164,7 +164,7 @@ class Page(collections.Sequence):
 
     def end_index(self):
         """
-        Returns the 1-based index of the last object on this page,
+        Return the 1-based index of the last object on this page,
         relative to total objects found (hits).
         """
         # Special case for the last page because there can be orphans.

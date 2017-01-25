@@ -52,7 +52,7 @@ class BaseEmailBackend:
 
     def send_messages(self, email_messages):
         """
-        Sends one or more EmailMessage objects and returns the number of email
+        Send one or more EmailMessage objects and return the number of email
         messages sent.
         """
         raise NotImplementedError('subclasses of BaseEmailBackend must override send_messages() method')

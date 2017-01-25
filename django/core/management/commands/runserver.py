@@ -63,7 +63,7 @@ class Command(BaseCommand):
 
     def get_handler(self, *args, **options):
         """
-        Returns the default WSGI handler for the runner.
+        Return the default WSGI handler for the runner.
         """
         return get_internal_wsgi_application()
 
@@ -102,7 +102,7 @@ class Command(BaseCommand):
 
     def run(self, **options):
         """
-        Runs the server, using the autoreloader if needed
+        Run the server, using the autoreloader if needed
         """
         use_reloader = options['use_reloader']
 

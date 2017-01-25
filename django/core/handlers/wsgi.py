@@ -18,7 +18,7 @@ _slashes_re = re.compile(br'/+')
 
 class LimitedStream:
     '''
-    LimitedStream wraps another stream in order to not allow reading from it
+    Wrap another stream in order to not allow reading from it
     past specified amount of bytes.
     '''
     def __init__(self, stream, limit, buf_size=64 * 1024 * 1024):
@@ -173,8 +173,8 @@ def get_path_info(environ):
 
 def get_script_name(environ):
     """
-    Returns the equivalent of the HTTP request's SCRIPT_NAME environment
-    variable. If Apache mod_rewrite has been used, returns what would have been
+    Return the equivalent of the HTTP request's SCRIPT_NAME environment
+    variable. If Apache mod_rewrite has been used, return what would have been
     the script name prior to any rewriting (so it's the script name as seen
     from the client's perspective), unless the FORCE_SCRIPT_NAME setting is
     set (to anything).

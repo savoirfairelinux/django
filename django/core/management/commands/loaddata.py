@@ -138,7 +138,7 @@ class Command(BaseCommand):
 
     def load_label(self, fixture_label):
         """
-        Loads fixtures files for a given label.
+        Load fixtures files for a given label.
         """
         show_progress = self.verbosity >= 3
         for fixture_file, fixture_dir, fixture_name in self.find_fixtures(fixture_label):
@@ -204,7 +204,7 @@ class Command(BaseCommand):
     @functools.lru_cache(maxsize=None)
     def find_fixtures(self, fixture_label):
         """
-        Finds fixture files for a given label.
+        Find fixture files for a given label.
         """
         fixture_name, ser_fmt, cmp_fmt = self.parse_name(fixture_label)
         databases = [self.using, None]
@@ -291,7 +291,7 @@ class Command(BaseCommand):
 
     def parse_name(self, fixture_name):
         """
-        Splits fixture name in name, serialization format, compression format.
+        Split fixture name in name, serialization format, compression format.
         """
         parts = fixture_name.rsplit('.', 2)
 

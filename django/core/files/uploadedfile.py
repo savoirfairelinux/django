@@ -63,7 +63,7 @@ class TemporaryUploadedFile(UploadedFile):
 
     def temporary_file_path(self):
         """
-        Returns the full path of this file.
+        Return the full path of this file.
         """
         return self.file.name
 
@@ -108,7 +108,7 @@ class SimpleUploadedFile(InMemoryUploadedFile):
     @classmethod
     def from_dict(cls, file_dict):
         """
-        Creates a SimpleUploadedFile object from
+        Create a SimpleUploadedFile object from
         a dictionary object with the following keys:
            - filename
            - content-type

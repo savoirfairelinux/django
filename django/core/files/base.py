@@ -76,7 +76,7 @@ class File(FileProxyMixin):
 
     def multiple_chunks(self, chunk_size=None):
         """
-        Returns ``True`` if you can expect multiple chunks.
+        Return ``True`` if you can expect multiple chunks.
 
         NB: If a particular file representation is in memory, subclasses should
         always return ``False`` -- there's no good reason to read from memory in
@@ -133,7 +133,7 @@ class File(FileProxyMixin):
 
 class ContentFile(File):
     """
-    A File-like object that takes just raw content, rather than an actual file.
+    Take just raw content, rather than an actual file.
     """
     def __init__(self, content, name=None):
         stream_class = StringIO if isinstance(content, str) else BytesIO

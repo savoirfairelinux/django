@@ -28,10 +28,10 @@ def _samefile(src, dst):
 
 def file_move_safe(old_file_name, new_file_name, chunk_size=1024 * 64, allow_overwrite=False):
     """
-    Moves a file from one location to another in the safest way possible.
+    Move a file from one location to another in the safest way possible.
 
-    First, tries ``os.rename``, which is simple but will break across filesystems.
-    If that fails, streams manually from one file to another in pure Python.
+    First, try ``os.rename``, which is simple but will break across filesystems.
+    If that fails, stream manually from one file to another in pure Python.
 
     If the destination file exists and ``allow_overwrite`` is ``False``, this
     function will throw an ``IOError``.

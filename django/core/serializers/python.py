@@ -14,7 +14,7 @@ from django.utils.encoding import force_text, is_protected_type
 
 class Serializer(base.Serializer):
     """
-    Serializes a QuerySet to basic Python objects.
+    Serialize a QuerySet to basic Python objects.
     """
 
     internal_use_only = True

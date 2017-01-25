@@ -280,13 +280,13 @@ class EmailMessage:
 
     def recipients(self):
         """
-        Returns a list of all recipients of the email (includes direct
+        Return a list of all recipients of the email (includes direct
         addressees as well as Cc and Bcc entries).
         """
         return [email for email in (self.to + self.cc + self.bcc) if email]
 
     def send(self, fail_silently=False):
-        """Sends the email message."""
+        """Send the email message."""
         if not self.recipients():
             # Don't bother creating the network connection if there's nobody to
             # send to.
@@ -295,7 +295,7 @@ class EmailMessage:
 
     def attach(self, filename=None, content=None, mimetype=None):
         """
-        Attaches a file with the given filename and content. The filename can
+        Attach a file with the given filename and content. The filename can
         be omitted and the mimetype is guessed, if not provided.
 
         If the first parameter is a MIMEBase subclass it is inserted directly
@@ -332,7 +332,7 @@ class EmailMessage:
 
     def attach_file(self, path, mimetype=None):
         """
-        Attaches a file from the filesystem.
+        Attach a file from the filesystem.
 
         The mimetype will be set to the DEFAULT_ATTACHMENT_MIME_TYPE if it is
         not specified and cannot be guessed.
@@ -366,7 +366,7 @@ class EmailMessage:
 
     def _create_mime_attachment(self, content, mimetype):
         """
-        Converts the content, mimetype pair into a MIME attachment object.
+        Convert the content, mimetype pair into a MIME attachment object.
 
         If the mimetype is message/rfc822, content may be an
         email.Message or EmailMessage object, as well as a str.
@@ -396,7 +396,7 @@ class EmailMessage:
 
     def _create_attachment(self, filename, content, mimetype=None):
         """
-        Converts the filename, content, mimetype triple into a MIME attachment
+        Convert the filename, content, mimetype triple into a MIME attachment
         object.
         """
         attachment = self._create_mime_attachment(content, mimetype)

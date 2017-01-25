@@ -19,7 +19,7 @@ from django.utils.xmlutils import (
 
 class Serializer(base.Serializer):
     """
-    Serializes a QuerySet to XML.
+    Serialize a QuerySet to XML.
     """
 
     def indent(self, level):
@@ -317,7 +317,7 @@ class DefusedExpatParser(_ExpatParser):
     """
     An expat parser hardened against XML bomb attacks.
 
-    Forbids DTDs, external entity references
+    Forbid DTDs, external entity references
     """
     def __init__(self, *args, **kwargs):
         _ExpatParser.__init__(self, *args, **kwargs)
