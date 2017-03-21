@@ -4,11 +4,11 @@ from django.contrib.contenttypes.fields import (
     GenericForeignKey, GenericRelation,
 )
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.sites.models import SiteManager
+from django.contrib.sites.models import Site, SiteManager
 from django.db import models
 
 
-class Site(models.Model):
+class MockSite(models.Model):
     domain = models.CharField(max_length=100)
     objects = SiteManager()
 
@@ -36,6 +36,30 @@ class Article(models.Model):
         return self.title
 
 
+class ArticleManySites(models.Model):
+    title = models.CharField(max_length=100)
+    sites = models.ManyToManyField(Site)
+
+    def get_absolute_url(self):
+        return '/article/%d/' % self.pk
+
+
+class ArticleSite(models.Model):
+    title = models.CharField(max_length=100)
+    site = models.ForeignKey(Site, models.CASCADE)
+
+    def get_absolute_url(self):
+        return '/article/%d/' % self.pk
+
+
+class ArticleManyAuthors(models.Model):
+    title = models.CharField(max_length=100)
+    authors = models.ManyToManyField(Author)
+
+    def get_absolute_url(self):
+        return '/article/%d/' % self.pk
+
+
 class SchemeIncludedURL(models.Model):
     url = models.URLField(max_length=100)
 
@@ -55,31 +79,14 @@ class ProxyModel(ConcreteModel):
         proxy = True
 
 
-class FooWithoutUrl(models.Model):
-    """
-    Fake model not defining ``get_absolute_url`` for
-    ContentTypesTests.test_shortcut_view_without_get_absolute_url()
-    """
+class FooWithUrl(models.Model):
     name = models.CharField(max_length=30, unique=True)
-
-    def __str__(self):
-        return self.name
-
-
-class FooWithUrl(FooWithoutUrl):
-    """
-    Fake model defining ``get_absolute_url`` for
-    ContentTypesTests.test_shortcut_view().
-    """
 
     def get_absolute_url(self):
         return "/users/%s/" % quote(self.name)
 
 
-class FooWithBrokenAbsoluteUrl(FooWithoutUrl):
-    """
-    Fake model defining a ``get_absolute_url`` method containing an error
-    """
+class FooWithBrokenAbsoluteUrl(FooWithUrl):
 
     def get_absolute_url(self):
         return "/users/%s/" % self.unknown_field
@@ -120,7 +127,7 @@ class Post(models.Model):
 
 class ModelWithNullFKToSite(models.Model):
     title = models.CharField(max_length=200)
-    site = models.ForeignKey(Site, null=True, on_delete=models.CASCADE)
+    site = models.ForeignKey(MockSite, null=True, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
