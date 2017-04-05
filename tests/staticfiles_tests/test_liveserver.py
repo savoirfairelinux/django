@@ -6,6 +6,7 @@ django.test.LiveServerTestCase.
 
 import os
 from urllib.request import urlopen
+from urllib.error import HTTPError
 
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.core.exceptions import ImproperlyConfigured
@@ -86,3 +87,14 @@ class StaticLiveServerView(LiveServerBase):
         """
         with self.urlopen('/static/test/file.txt') as f:
             self.assertEqual(f.read().rstrip(b'\r\n'), b'In static directory.')
+
+    def test_directory_index_not_allowed(self):
+        with self.assertRaisesMessage(HTTPError, 'HTTP Error 404: Not Found'):
+            self.urlopen('/static/t/')
+
+        with self.assertRaisesMessage(HTTPError, 'HTTP Error 404: Not Found'):
+            self.urlopen('/static/')
+
+    def test_path_not_found(self):
+        with self.assertRaisesMessage(HTTPError, 'HTTP Error 404: Not Found'):
+            self.urlopen('/static/t/test.txt')
